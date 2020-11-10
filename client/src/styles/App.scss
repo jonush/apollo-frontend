@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+@import url('https://rsms.me/inter/inter.css');
+
+// VARIABLES
+$main-color: #7000FF;
+$sub-color: #4600a2;
+$bg-color: #FFFFFF;
+$title-size: 2rem;
+$header-size: 1.5rem;
+$default-size: 1rem;
+$medium-weight: 500;
+$gradient: linear-gradient(90deg, #7000FF 30%, #e100ff 100%);
+
+* {
+  // border: 1px solid red;
+}
+
+// ---------GLOBAL STYLES---------
+body {
+  font-family: "Inter";
+}
+
+h2 {
+  font-size: $title-size;
+  color: $main-color;
+}
+
+h3 {
+  font-size: $header-size;
+  color: $main-color;
+}
+
+p {
+  line-height: 180%;
+  font-weight: $medium-weight;
+}
+
+a {
+  text-decoration: none;
+  color: $main-color;
+
+  &:hover {
+    text-decoration: none;
+    color: $sub-color;
+  }
+}
+
+// --------APP STYLES--------
+.app {
+  width: 80%;
+  margin: 0 auto;
+}
+
+// --------WELCOME STYLES--------
+// NAV STYLES
+nav {
+  width: 79.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+  position: absolute;
+  z-index: 0;
+
+  .logo {
+    font-size: $title-size;
+    font-weight: bold;
+  }
+
+  .nav-actions {
+    font-size: $header-size;
+    font-weight: 600;
+    display: flex;
+
+    a {
+      margin-left: 2rem;
+    }
+  }
+}
+
+// HEADER STYLES
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  z-index: 1;
+
+  .header-intro {
+    width: 40%;
+    font-size: $header-size;
+    font-weight: $medium-weight;
+    line-height: 180%;
+  }
+
+  button {
+    background: $gradient;
+  }
+
+  img {
+    animation-name: floating; 
+    animation-duration: 3s; 
+    animation-iteration-count: infinite; 
+    animation-timing-function: ease-in-out; 
+  }
+
+  @keyframes floating { 
+    0% { transform: translate(0,  0px); } 
+    50%  { transform: translate(0, 15px); } 
+    100%   { transform: translate(0, -0px); }     
+  }
+}
+
+// FEATURES STYLES
+.features {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.features-title {
+  width: 50%;
+  text-align: center;
+  line-height: 180%;
+  padding-bottom: 4rem;
+}
+
+.feature-columns {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+
+  .feature-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-size: $default-size;
+      width: 60%;
+      text-align: center;
+      line-height: 180%;
+      font-weight: $medium-weight;;
+    }
+  }
+
+  img {
+    width: 100px;
+  }
+}
+
+// TAB PANEL STYLES
+.tab-panel {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.slider {
+  margin-bottom: 8rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #7000FF;
+  border-radius: 5px;
+
+  button {
+    width: 33%;
+  }
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 4rem;
+
+  .tab-description {
+    width: 30%;
+    height: 100%;
+  }
+
+  img {
+    width: 25%;
+  }
+}
