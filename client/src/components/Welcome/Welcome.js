@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
 import TabPanel from "./TabPanel";
 import { Button } from "antd";
@@ -18,7 +19,7 @@ const Welcome = () => {
         <Slide left>
           <div className="header-intro">
             <p>Automate your stand ups. <span style={{ "color": "#7000FF"}}>Apollo</span> handles the trouble of managing meetings so that you don't have to. Provide progress updates to team members on your own time. Create topics and answer surveys <span style={{ "textDecoration": "underline", "textDecorationColor": "#7000FF" }}>asynchronously</span>.</p>
-            <Button type="primary">Get Started</Button>
+            <Link to="/signup"><Button type="primary">Get Started</Button></Link>
           </div>
         </Slide>
 

@@ -1,22 +1,29 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Form, Input, Button, Divider } from "antd";
 import NavBar from "../Navbar";
+import { registerUser } from "../../api/index";
 import astronaut from "../../images/astronaut.svg";
 import wavesL from "../../images/waves-left.svg";
 import wavesR from "../../images/waves-right.svg";
 
 const SignUp = () => {
   const [form] = Form.useForm();
+  const history = useHistory();
 
-  const submitForm = e => {
-    e.preventDefault();
-
+  const submitForm = () => {
     form
       .validateFields()
       .then(values => {
-        console.log(values);
-        form.resetFields();
+        registerUser(values)
+          .then(res => {
+            console.log(res);
+            form.resetFields();
+            history.push("/login");
+          })
+          .catch(err => {
+            alert('User Registration Failed');
+          })
       })
       .catch(err => {
         console.log(err);
@@ -58,7 +65,7 @@ const SignUp = () => {
             name="password"
             rules={[{ required: true, message: 'Please enter a password.' }]}
           >
-            <Input placeholder="Password" />
+            <Input.Password visibilityToggle={false} placeholder="Password" />
           </Form.Item>
 
           <Form.Item

@@ -1,22 +1,29 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Form, Input, Button, Divider } from "antd";
 import NavBar from "../Navbar";
+import { loginUser } from "../../api/index";
 import planet from "../../images/planet.svg";
 import wavesL from "../../images/waves-left.svg";
 import wavesR from "../../images/waves-right.svg";
 
 const Login = () => {
   const [form] = Form.useForm();
+  const history = useHistory();
 
-  const submitForm = e => {
-    e.preventDefault();
-
+  const submitForm = () => {
     form
       .validateFields()
       .then(values => {
-        console.log(values);
-        form.resetFields();
+        loginUser(values)
+          .then(res => {
+            console.log(res);
+            form.resetFields();
+            // history.push("/dashboard");
+          })
+          .catch(err => {
+            alert('User Login Failed');
+          })
       })
       .catch(err => {
         console.log(err);
