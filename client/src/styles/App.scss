@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+// the ant design library
+// @import '~antd/dist/antd.css';
+// the Inter font by Rasmus Andersson
 @import url('https://rsms.me/inter/inter.css');
 
 // VARIABLES
@@ -45,39 +47,52 @@ a {
   }
 }
 
+.divider span {
+  font-size: $header-size;
+  color: $main-color;
+}
+
 // --------APP STYLES--------
 .app {
   width: 80%;
   margin: 0 auto;
 }
 
-// --------WELCOME STYLES--------
 // NAV STYLES
 nav {
-  width: 79.5%;
+  width: 79%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 2rem 0;
   position: absolute;
   z-index: 0;
-
+  
   .logo {
     font-size: $title-size;
     font-weight: bold;
   }
-
+  
   .nav-actions {
     font-size: $header-size;
     font-weight: 600;
     display: flex;
-
+    
     a {
       margin-left: 2rem;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 }
 
+.hidden-nav {
+  display: none;
+}
+
+// --------WELCOME STYLES--------
 // HEADER STYLES
 .header {
   display: flex;
@@ -93,9 +108,10 @@ nav {
     line-height: 180%;
   }
 
-  button {
-    background: $gradient;
-  }
+  // button {
+  //   background: $gradient;
+  //   border:
+  // }
 
   img {
     animation-name: floating; 
@@ -161,28 +177,19 @@ nav {
 }
 
 // TAB PANEL STYLES
-.tab-panel {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-}
-
-.slider {
-  margin-bottom: 8rem;
-}
-
-.tabs {
+.tabs-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  border: 1px solid #7000FF;
+  margin: 0 auto;
   border-radius: 5px;
-
-  button {
-    width: 33%;
-  }
+  height: 100vh;
 }
+
+// .tabs-box {
+//   width: 80%;
+//   height: 80%;
+// }
 
 .tab-content {
   display: flex;
@@ -197,6 +204,56 @@ nav {
   }
 
   img {
-    width: 25%;
+    width: 30%;
   }
+}
+
+// SIGN UP STYLES
+.user-container {
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  img {
+    animation-name: floating; 
+    animation-duration: 3s; 
+    animation-iteration-count: infinite; 
+    animation-timing-function: ease-in-out;
+    width: 30%;
+  }
+
+  @keyframes floating { 
+    0% { transform: translate(0,  0px); } 
+    50%  { transform: translate(0, 15px); } 
+    100%   { transform: translate(0, -0px); }     
+  }
+}
+
+.user-form {
+  width: 30%;
+
+  input, button {
+    margin-top: 1rem;
+  }
+
+  p {
+    margin-top: 1rem;
+  }
+}
+
+.waves-l {
+  position: fixed;
+  z-index: -1;
+  top: 500px;
+  left: -680px;
+  transform: rotate(5deg);
+}
+
+.waves-r {
+  position: fixed;
+  z-index: -1;
+  top: -335px;
+  right: -760px;
+  transform: rotate(10deg);
 }

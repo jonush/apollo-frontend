@@ -1,12 +1,11 @@
 import React from "react";
-import Navbar from "./Navbar";
-import { Button } from "@material-ui/core";
+import Navbar from "../Navbar";
 import TabPanel from "./TabPanel";
-import headerImg from "../images/headerAstronaut.png";
-import blocks from "../images/blocks.svg";
-import asyncIcon from "../images/async.svg";
-import clock from "../images/clock.svg";
-import Bounce from "react-reveal/Bounce";
+import { Button } from "antd";
+import headerImg from "../../images/headerAstronaut.png";
+import blocks from "../../images/blocks.svg";
+import asyncIcon from "../../images/async.svg";
+import clock from "../../images/clock.svg";
 import Slide from "react-reveal/Slide";
 import Fade from "react-reveal/Fade";
 
@@ -16,10 +15,12 @@ const Welcome = () => {
       <Navbar />
 
       <div className="header">
-        <div className="header-intro">
-          <Bounce><p>Automate your stand ups. <span style={{ "color": "#7000FF"}}>Apollo</span> handles the trouble of managing meetings so that you don't have to. Provide progress updates to team members on your own time. Create topics and answer surveys <span style={{ "textDecoration": "underline", "textDecorationColor": "#7000FF" }}>asynchronously</span>.</p></Bounce>
-          <Slide left><Button variant="contained" color="primary">Get Started</Button></Slide>
-        </div>
+        <Slide left>
+          <div className="header-intro">
+            <p>Automate your stand ups. <span style={{ "color": "#7000FF"}}>Apollo</span> handles the trouble of managing meetings so that you don't have to. Provide progress updates to team members on your own time. Create topics and answer surveys <span style={{ "textDecoration": "underline", "textDecorationColor": "#7000FF" }}>asynchronously</span>.</p>
+            <Button type="primary">Get Started</Button>
+          </div>
+        </Slide>
 
         <img src={headerImg} alt="astronaut helmet looking at planets"/>
       </div>
@@ -63,7 +64,7 @@ const Welcome = () => {
         </div>
       </div>
 
-      <div className="tab-panel">
+      <div>
         <TabPanel />
       </div>
     </div>
