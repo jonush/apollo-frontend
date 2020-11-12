@@ -61,7 +61,7 @@ const Login = () => {
             <Input.Password visibilityToggle={false} placeholder="Password" />
           </Form.Item>
 
-          <Button type="primary" htmlType="submit" block>Sign Up</Button>
+          <Button type="primary" htmlType="submit" block>Login</Button>
           <p>Don't have account? <Link to="/signup">Sign up</Link></p>
         </Form>
       </div>

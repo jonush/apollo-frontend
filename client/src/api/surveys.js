@@ -60,7 +60,6 @@ const deleteSurvey = id => {
 };
 
 export {
-  getSurveys,
   getSurveyByID,
   getSurveyByTopicID,
   createSurvey,
