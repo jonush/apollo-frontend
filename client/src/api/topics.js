@@ -60,7 +60,6 @@ const deleteTopic = id => {
 };
 
 export {
-  getTopics,
   getTopicByID,
   getTopicByLeaderID,
   createTopic,
