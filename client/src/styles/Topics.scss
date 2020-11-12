@@ -54,9 +54,15 @@
   }
 }
 
-.topic {
+.main-topic-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.topic-container {
   margin-top: 2rem;
-  width: 300px;
+  width: 30%;
 }
 
 .topic-title {

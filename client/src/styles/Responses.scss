@@ -1,0 +1,62 @@
+@import "./Variables.scss";
+
+.context-container {
+  width: 100%;
+
+  .context {
+    margin-top: 2rem;
+
+    h4 {
+      font-size: $default-size;
+      margin: 0 auto;
+    }
+
+    h3 {
+      font-size: $header-size;
+      font-weight: bold;
+    }
+  }
+
+  .context-question {
+    margin-bottom: 2rem;
+
+    h4 {
+      font-size: $default-size;
+    }
+
+    p {
+      background: #efe5fc;
+      border: 1px solid #6f00ff;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      text-align: left;
+    }
+  }
+}
+
+.responses-list {
+  margin-top: 2rem;
+  margin: 2rem 0 0 10rem;
+  width: 100%;
+
+  h3 {
+    font-size: $title-size;
+    font-weight: bold;
+  }
+
+  .response {
+    margin-bottom: 1rem;
+
+    h4 {
+      font-size: $default-size;
+    }
+
+    p {
+      background: #efe5fc;
+      border: 1px solid #6f00ff;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      text-align: left;
+    }
+  }
+}

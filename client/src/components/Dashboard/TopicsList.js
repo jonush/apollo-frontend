@@ -13,6 +13,7 @@ const TopicsList = props => {
         props.topics ? props.topics.map((topic, index) => {
           return (
             <h3
+              key={index}
               className={props.currentID === topic.id ? "topic-circle selected-topic" : "topic-circle"}
               onClick={() => {props.viewTopic(topic)}}
             >

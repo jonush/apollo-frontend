@@ -1,12 +1,12 @@
 import { axiosWithAuth } from "./index";
 
-// Survey Endpoints
-const surveys = `${process.env.REACT_APP_API_URI}/surveys`;
+// Responses Endpoints
+const responses = `${process.env.REACT_APP_API_URI}/responses`;
 
-// fetch a survey by its ID
-const getSurveyByID = id => {
+// fetch a response by its ID
+const getResponseByID = id => {
   return axiosWithAuth()
-    .get(`${surveys}/${id}`)
+    .get(`${responses}/${id}`)
     .then(res => {
       return res.data;
     })
@@ -15,10 +15,10 @@ const getSurveyByID = id => {
     })
 };
 
-// get all surveys by a topic ID
-const getSurveyByTopicID = topicID => {
+// fetch all responses by a survey ID
+const getResponsesBySurveyID = surveyID => {
   return axiosWithAuth()
-    .get(`${surveys}/topic/${topicID}`)
+    .get(`${responses}/survey/${surveyID}`)
     .then(res => {
       return res.data;
     })
@@ -27,10 +27,10 @@ const getSurveyByTopicID = topicID => {
     })
 };
 
-// create a new survey
-const createSurvey = survey => {
+// create a new response
+const createResponse = response => {
   return axiosWithAuth()
-    .post(surveys, survey)
+    .post(responses, response)
     .then(res => {
       return res.data;
     })
@@ -39,10 +39,10 @@ const createSurvey = survey => {
     })
 };
 
-// edit a survey
-const updateSurvey = (survey, id) => {
+// edit a response
+const updateResponse = (response, id) => {
   return axiosWithAuth()
-    .put(`${surveys}/${id}`, survey)
+    .put(`${responses}/${id}`, response)
     .then(res => {
       return res.data;
     })
@@ -51,10 +51,10 @@ const updateSurvey = (survey, id) => {
     })
 };
 
-// delete a survey
-const deleteSurvey = id => {
+// delete a response
+const deleteResponse = id => {
   return axiosWithAuth()
-    .delete(`${surveys}/${id}`)
+    .delete(`${responses}/${id}`)
     .then(res => {
       return res.data;
     })
@@ -64,9 +64,9 @@ const deleteSurvey = id => {
 };
 
 export {
-  getSurveyByID,
-  getSurveyByTopicID,
-  createSurvey,
-  updateSurvey,
-  deleteSurvey,
+  getResponseByID,
+  getResponsesBySurveyID,
+  createResponse,
+  updateResponse,
+  deleteResponse,
 };

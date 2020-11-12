@@ -17,16 +17,20 @@ const Login = () => {
       .then(values => {
         loginUser(values)
           .then(res => {
-            console.log(res);
-            form.resetFields();
-            history.push("/dashboard");
+            if(res === "SUCCESS: User logged in.") {
+              form.resetFields();
+              history.push("/dashboard");
+            } else {
+              alert('User Login Failed. Invalid Credentials.');
+            }
           })
           .catch(err => {
-            alert('User Login Failed');
+            console.log(err);
+            alert('User Login Failed.');
           })
       })
       .catch(err => {
-        console.log(err);
+        console.log("Please check your credentials and try again.");
       })
   };
 

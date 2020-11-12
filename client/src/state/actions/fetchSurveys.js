@@ -13,7 +13,6 @@ export const fetchSurveys = id => dispatch => {
   axiosWithAuth()
     .get(`${surveys}/topic/${id}`)
     .then(res => {
-      console.log(res);
       dispatch({ type: SURVEYS_SUCCESS, payload: res.data })
     })
     .catch(err => {
