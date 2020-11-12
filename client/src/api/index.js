@@ -30,7 +30,6 @@ const registerUser = newUser => {
   return axios
     .post(`${auth}/register`, newUser)
     .then(res => {
-      localStorage.setItem('token', res.data.token);
       return res.data;
     })
     .catch(err => {
@@ -43,8 +42,8 @@ const loginUser = credentials => {
   return axios
     .post(`${auth}/login`, credentials)
     .then(res => {
-      localStorage.setItem('token', res.data.token);
-      return res.data;
+      localStorage.setItem('token', res.token);
+      return res.message;
     })
     .catch(err => {
       console.log(err);
