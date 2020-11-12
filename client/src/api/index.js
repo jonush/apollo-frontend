@@ -4,20 +4,13 @@ import axios from "axios";
 // Methods should be created and exported from this file, and imported into components.
 
 // BASE URL
+// can also be set up in a .env file as: process.env.REACT_APP_API_URI
 const baseURL = `https://apollo-be-api.herokuapp.com`
 
-// API ENDPOINTS
 // refer to the API documentation for a list of all endpoints:
 // https://github.com/jonush/apollo-backend
-const auth = `${baseURL}/auth`;
-const users = `${baseURL}/users`;
-const topics = `${baseURL}/topics`;
-const topicMembers = `${baseURL}/topic-members`;
-const surveys = `${baseURL}/surveys`;
-const questions = `${baseURL}/questions`;
-const surveyQuestions = `${baseURL}/survey-questions`;
-const responses = `${baseURL}/responses`;
-const comments = `${baseURL}/comments`;
+const auth = `${process.env.REACT_APP_API_URI}/auth`;
+const users = `${process.env.REACT_APP_API_URI}/users`;
 
 // AXIOS AUTHENTICATION HEADER FOR TOKEN
 // use this method to make calls to restricted routes (instead of "axios")
@@ -25,13 +18,14 @@ const axiosWithAuth = () => {
   const token = localStorage.getItem('token');
   return axios.create({
     headers: {
-      Authorization: 'Bearer ' + token,
+      Authorization: token,
     },
-    baseURL: baseURL
+    baseURL: process.env.REACT_APP_API_URI
   });
 };
 
 // Authentication Endpoints
+// register a new user
 const registerUser = newUser => {
   return axios
     .post(`${auth}/register`, newUser)
@@ -44,6 +38,7 @@ const registerUser = newUser => {
     })
 };
 
+// log in with a user's credentials
 const loginUser = credentials => {
   return axios
     .post(`${auth}/login`, credentials)
@@ -57,6 +52,7 @@ const loginUser = credentials => {
 };
 
 export {
+  baseURL,
   axiosWithAuth,
   registerUser,
   loginUser,

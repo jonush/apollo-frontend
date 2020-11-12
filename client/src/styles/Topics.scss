@@ -1,0 +1,76 @@
+@import "./Variables.scss";
+
+// TOPICS LIST STYLES
+.topics-list {
+  position: absolute;
+  left: 0;
+  background: $main-color;
+  height: 100vh;
+  width: 80px;
+  border-radius: 0 15px 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem 0;
+
+  .topic-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    margin: .5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+      color: $sub-color;
+    }
+  }
+
+  .selected-topic {
+    border: 4px solid black;
+  }
+}
+
+// MAIN TOPIC STYLES
+.topic-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+
+  h3 {
+    font-weight: bold;
+  }
+
+  .topic-buttons button {
+    margin: 0 2rem;
+  }
+}
+
+.topic {
+  margin-top: 2rem;
+  width: 300px;
+}
+
+.topic-title {
+  font-size: $title-size;
+  font-weight: bold;
+}
+
+.join-code {
+  border: 2px dashed $main-color;
+  padding: .5rem;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    color: $main-color;
+  }
+}

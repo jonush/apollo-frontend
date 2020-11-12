@@ -1,17 +1,11 @@
-// the ant design library
-// @import '~antd/dist/antd.css';
 // the Inter font by Rasmus Andersson
 @import url('https://rsms.me/inter/inter.css');
-
-// VARIABLES
-$main-color: #7000FF;
-$sub-color: #4600a2;
-$bg-color: #FFFFFF;
-$title-size: 2rem;
-$header-size: 1.5rem;
-$default-size: 1rem;
-$medium-weight: 500;
-$gradient: linear-gradient(90deg, #7000FF 30%, #e100ff 100%);
+// all referenced variables
+@import "./Variables.scss";
+// all styles for topics
+@import "./Topics.scss";
+// all styles for surveys
+@import "./Surveys.scss";
 
 * {
   // border: 1px solid red;
@@ -208,7 +202,7 @@ nav {
   }
 }
 
-// SIGN UP STYLES
+// USER ONBOARDING STYLES
 .user-container {
   height: 100vh;
   display: flex;

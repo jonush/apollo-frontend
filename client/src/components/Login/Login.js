@@ -19,7 +19,7 @@ const Login = () => {
           .then(res => {
             console.log(res);
             form.resetFields();
-            // history.push("/dashboard");
+            history.push("/dashboard");
           })
           .catch(err => {
             alert('User Login Failed');
@@ -58,7 +58,7 @@ const Login = () => {
             name="password"
             rules={[{ required: true, message: 'Please enter a password.' }]}
           >
-            <Input placeholder="Password" />
+            <Input.Password visibilityToggle={false} placeholder="Password" />
           </Form.Item>
 
           <Button type="primary" htmlType="submit" block>Sign Up</Button>
