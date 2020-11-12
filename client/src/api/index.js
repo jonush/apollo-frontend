@@ -42,6 +42,7 @@ const loginUser = credentials => {
   return axios
     .post(`${auth}/login`, credentials)
     .then(res => {
+      console.log("TOKEN:", res.token)
       localStorage.setItem('token', res.token);
       return res.message;
     })
