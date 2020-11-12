@@ -13,7 +13,6 @@ export const fetchTopics = () => dispatch => {
   axiosWithAuth()
     .get(topics)
     .then(res => {
-      console.log(res);
       dispatch({ type: TOPICS_SUCCESS, payload: res.data })
     })
     .catch(err => {
