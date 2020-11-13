@@ -1,4 +1,9 @@
-import { SURVEYS_START, SURVEYS_SUCCESS, SURVEYS_FAILURE } from "../actions/fetchSurveys";
+import {
+  SURVEYS_START,
+  SURVEYS_SUCCESS,
+  SURVEYS_FAILURE,
+  SURVEYS_RESET,
+} from "../actions/fetchSurveys";
 
 export const initialState = {
   isFetching: false,
@@ -24,6 +29,11 @@ export const surveysReducer = (state = initialState, action) => {
         ...state,
         errors: action.payload
       }
+    case SURVEYS_RESET: {
+      return {
+        surveys: initialState.surveys,
+      }
+    }
     default:
       return state
   }

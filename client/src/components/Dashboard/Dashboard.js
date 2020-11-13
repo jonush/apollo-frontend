@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from "react";
+import React, { useState }  from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Button } from "antd";
 import TopicsList from "./TopicsList";
@@ -9,7 +9,7 @@ const Dashboard = () => {
   const history = useHistory();
 
   const viewTopic = topic => {
-    setTopic(topic)
+    setTopic(topic);
   };
 
   const logOut = () => {
@@ -19,9 +19,11 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+      {/* the topics list */}
       <TopicsList currentID={topic ? topic.id : null} viewTopic={viewTopic}/>
 
       <div className="main-topic">
+        {/* buttons for creating topics, joining topics, and logging out */}
         <div className="topic-nav">
           <h3>Apollo</h3>
 
@@ -33,6 +35,7 @@ const Dashboard = () => {
           <h4 onClick={() => {logOut()}}><Link to="/">Logout</Link></h4>
         </div>
 
+        {/* the main topic: includes surveys and responses */}
         { topic ? <MainTopic topic={topic} /> : <p>Select a topic from the topics list on the left 😀</p> }
       </div>
 
