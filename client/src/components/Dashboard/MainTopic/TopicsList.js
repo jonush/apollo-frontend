@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchTopics } from "../../state/actions/fetchTopics";
+import { fetchTopics } from "../../../state/actions/fetchTopics";
 
 const TopicsList = props => {
   useEffect(() => {

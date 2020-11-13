@@ -49,9 +49,13 @@
     font-weight: bold;
   }
 
-  .topic-buttons button {
-    margin: 0 2rem;
-  }
+  .topic-buttons {
+    display: flex;
+
+    button {
+      margin: 0 2rem;
+    }
+  }   
 }
 
 .main-topic-container {
@@ -79,4 +83,9 @@
     cursor: pointer;
     color: $main-color;
   }
+}
+
+// NEW TOPIC MODAL STYLES
+.closed {
+  display: none;
 }

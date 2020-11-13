@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchResponses, resetResponses } from "../../state/actions/fetchResponses";
+import { fetchResponses, resetResponses } from "../../../state/actions/fetchResponses";
 import Moment from "react-moment";
 
 const Responses = props => {

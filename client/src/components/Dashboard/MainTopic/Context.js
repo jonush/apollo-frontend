@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchResponses, resetResponses } from "../../state/actions/fetchResponses";
+import { fetchResponses, resetResponses } from "../../../state/actions/fetchResponses";
 
 const Context = props => {
 

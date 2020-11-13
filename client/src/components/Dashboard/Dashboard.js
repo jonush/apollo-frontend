@@ -1,8 +1,9 @@
 import React, { useState }  from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Button } from "antd";
-import TopicsList from "./TopicsList";
-import MainTopic from "./MainTopic";
+import TopicsList from "./MainTopic/TopicsList";
+import MainTopic from "./MainTopic/MainTopic";
+import NewTopic from "./NewTopic/NewTopic";
 
 const Dashboard = () => {
   const [topic, setTopic] = useState();
@@ -28,7 +29,7 @@ const Dashboard = () => {
           <h3>Apollo</h3>
 
           <div className="topic-buttons">
-            <Button type="primary">New Topic</Button>
+            <NewTopic />
             <Button type="secondary">Join Topic</Button>
           </div>
 

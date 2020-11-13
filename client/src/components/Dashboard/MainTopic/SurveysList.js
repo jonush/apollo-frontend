@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchSurveys } from "../../state/actions/fetchSurveys";
+import { fetchSurveys } from "../../../state/actions/fetchSurveys";
 import { Form, Select } from "antd";
 import Moment from "react-moment";
 
