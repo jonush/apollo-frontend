@@ -4,8 +4,9 @@ import { fetchTopics } from "../../../state/actions/fetchTopics";
 
 const TopicsList = props => {
   useEffect(() => {
-    props.fetchTopics()
-  }, [])
+    props.fetchTopics();
+    props.refreshTopics(false);
+  }, [props.refreshTopics])
 
   return (
   <div className="topics-list">

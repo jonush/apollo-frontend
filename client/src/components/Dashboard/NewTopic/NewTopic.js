@@ -1,20 +1,43 @@
 import React, { useState } from "react";
-import { Button, Modal, Form, Steps } from "antd";
+import { Button, Modal, Form, Steps, message } from "antd";
+import { InfoCircleTwoTone } from "@ant-design/icons";
+import { createTopic } from "../../../api/topics";
+import { createQuestion } from "../../../api/questions";
 import TopicDetails from "./TopicDetails";
-import TopicContext from "./TopicContext";
-import TopicQuestions from "./TopicQuestions";
+import TopicContextQ from "./TopicContextQ";
+import TopicSurveyQ from "./TopicSurveyQ";
 import TopicReview from "./TopicReview";
+import axios from "axios";
 
-const NewTopic = () => {
+const NewTopic = props => {
   const [form] = Form.useForm();
   const [page, setPage] = useState(0);
   const [visible, setVisible] = useState(false);
 
-  const createTopic = () => {
+  const createNewTopic = () => {
     form
-      .validateForm()
+      .validateFields()
       .then(values => {
         console.log(values);
+        createTopic(values.topic)
+          .then(res => {
+            let questions = setTopicID(values, res.topicID);
+            axios
+              .all(questions.map(q => {
+                createQuestion(q);
+              }))
+              .then(res => {
+                setVisible(false);
+                props.refreshTopics(true);
+                showJoinCode(values);
+                form.resetFields();
+              })
+              .catch(err => console.log(err));
+          })
+          .catch(err => {
+            console.log("Creating topic", err);
+            alert("Unable to create the topic. Please try again.")
+          });
       })
       .catch(err => {
         console.log(err);
@@ -25,6 +48,28 @@ const NewTopic = () => {
     form.resetFields();
     setVisible(false);
     setPage(0);
+  };
+
+  const setTopicID = (values, topicID) => {
+    for(let i = 0; i < values.contextQuestions.length; i++) {
+      values.contextQuestions[i].topic_id = topicID;
+    };
+
+    for(let i = 0; i < values.surveyQuestions.length; i++) {
+      values.surveyQuestions[i].topic_id = topicID;
+    };
+
+    return values.contextQuestions.concat(values.surveyQuestions);
+  };
+
+  // display Join code on submit
+  const showJoinCode = values => {
+    return Modal.confirm({
+      title: "Here is your join code: ",
+      icon: <InfoCircleTwoTone />,
+      content: values.topic.join_code,
+      okText: "Ok"
+    });
   };
 
   return (
@@ -44,7 +89,7 @@ const NewTopic = () => {
           overflowX: "hidden",
           margin: "0 auto"
         }}
-        onOK={createTopic}
+        onOK={createNewTopic}
         onCancel={cancelTopic}
         footer={
           <>
@@ -61,7 +106,7 @@ const NewTopic = () => {
               <Button
                 type="primary"
                 style={{ width: "30%" }}
-                onClick={createTopic}
+                onClick={createNewTopic}
               >
                 Create Topic
               </Button>
@@ -95,16 +140,16 @@ const NewTopic = () => {
             <TopicDetails />
           </div>
 
-          <div className={page === 1? null : "closed"}>
-            <TopicContext />
+          <div className={page === 1 ? null : "closed"}>
+            <TopicContextQ />
           </div>
 
           <div className={page === 2 ? null : "closed"}>
-            <TopicQuestions />
+            <TopicSurveyQ />
           </div>
 
           <div className={page === 3 ? null : "closed"}>
-            <TopicReview />
+            <TopicReview form={form} page={page} />
           </div>
         </Form>
       </Modal>

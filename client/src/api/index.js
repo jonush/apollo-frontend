@@ -19,8 +19,7 @@ const axiosWithAuth = () => {
   return axios.create({
     headers: {
       Authorization: token,
-    },
-    baseURL: process.env.REACT_APP_API_URI
+    }
   });
 };
 
@@ -43,7 +42,8 @@ const loginUser = credentials => {
     .post(`${auth}/login`, credentials)
     .then(res => {
       localStorage.setItem('token', res.data.token);
-      return res.data.message;
+      localStorage.setItem('userID', res.data.userID);
+      return res.data;
     })
     .catch(err => {
       console.log(err);
