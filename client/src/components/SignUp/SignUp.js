@@ -17,9 +17,13 @@ const SignUp = () => {
       .then(values => {
         registerUser(values)
           .then(res => {
-            console.log(res);
-            form.resetFields();
-            history.push("/login");
+            if(res.error) {
+              alert("Unable to sign up. Please try again.");
+            } else {
+              console.log(res);
+              form.resetFields();
+              history.push("/login");
+            }
           })
           .catch(err => {
             alert('User Registration Failed');

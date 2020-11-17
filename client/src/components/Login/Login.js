@@ -17,8 +17,9 @@ const Login = () => {
       .then(values => {
         loginUser(values)
           .then(res => {
-            if(res === "SUCCESS: User logged in.") {
+            if(res.message === "SUCCESS: User logged in.") {
               form.resetFields();
+              console.log(res);
               history.push("/dashboard");
             } else {
               alert('User Login Failed. Invalid Credentials.');

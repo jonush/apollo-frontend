@@ -1,8 +1,17 @@
 import React from "react";
 import { Form, Input, Divider, Select } from "antd";
+import generator from "generate-password";
 
 const TopicDetails = () => {
   const {Option} = Select;
+  const userID = localStorage.getItem("userID");
+
+  // set the JOIN CODE
+  const joinCode = generator.generate({
+    length: 6,
+    numbers: true,
+    excludeSimilarCharacters: true
+  });
 
   return (
     <div>
@@ -16,6 +25,13 @@ const TopicDetails = () => {
       >
         <Input placeholder="ex: Daily Stand Up" />
       </Form.Item>
+
+      <Form.Item
+        name={["topic", "join_code"]}
+        label="Join Code"
+        className="closed"
+        initialValue={joinCode}
+      />
 
       <Form.Item
         style={{ marginTop: "1rem" }}

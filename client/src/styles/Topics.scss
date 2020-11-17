@@ -89,3 +89,70 @@
 .closed {
   display: none;
 }
+
+.new-topic-question {
+  margin-top: 2rem;
+}
+
+.context-desc {
+  opacity: 1;
+}
+
+.ant-form-item {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.remove-question-button {
+  border: none;
+  padding: 4px 2px;
+}
+
+.remove-question-button p {
+  border: none;
+  opacity: 80%;
+}
+
+.remove-question-button p:hover {
+  text-decoration: underline;
+  opacity: 100%;
+}
+
+.add-question-button {
+  margin-top: 2rem;
+}
+
+.review{
+  .review-topic {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    
+    div {
+      margin: 1rem 4rem 1rem 0;
+    }
+  }
+
+  .review-questions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+
+    div {
+      margin-right: 2rem;
+    }
+  }
+
+  h3 {
+    font-size: $default-size;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  h4 {
+    margin-bottom: 0;
+    padding: 0;
+  }
+}

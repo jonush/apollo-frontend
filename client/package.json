@@ -12,6 +12,7 @@
     "craco-antd": "^1.19.0",
     "craco-less": "^1.17.0",
     "eslint-webpack-plugin": "^2.2.1",
+    "generate-password": "^1.5.1",
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",

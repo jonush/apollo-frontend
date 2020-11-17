@@ -7,10 +7,16 @@ import NewTopic from "./NewTopic/NewTopic";
 
 const Dashboard = () => {
   const [topic, setTopic] = useState();
+  const [refresh, setRefresh] = useState(false);
   const history = useHistory();
 
   const viewTopic = topic => {
     setTopic(topic);
+  };
+
+  const refreshTopics = refresh => {
+    // refreshes the topic list upon creating a new topic
+    setRefresh(refresh);
   };
 
   const logOut = () => {
@@ -21,7 +27,12 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       {/* the topics list */}
-      <TopicsList currentID={topic ? topic.id : null} viewTopic={viewTopic}/>
+      <TopicsList
+        currentID={topic ? topic.id : null}
+        viewTopic={viewTopic}
+        refresh={refresh}
+        refreshTopics={refreshTopics}
+      />
 
       <div className="main-topic">
         {/* buttons for creating topics, joining topics, and logging out */}
@@ -29,7 +40,7 @@ const Dashboard = () => {
           <h3>Apollo</h3>
 
           <div className="topic-buttons">
-            <NewTopic />
+            <NewTopic refreshTopics={refreshTopics} />
             <Button type="secondary">Join Topic</Button>
           </div>
 
