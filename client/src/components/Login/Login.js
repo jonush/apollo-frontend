@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Form, Input, Button, Divider } from "antd";
 import NavBar from "../Navbar";
@@ -10,6 +10,7 @@ import wavesR from "../../images/waves-right.svg";
 const Login = () => {
   const [form] = Form.useForm();
   const history = useHistory();
+  const [loginError, setLoginError] = useState(false);
 
   const submitForm = () => {
     form
@@ -22,12 +23,12 @@ const Login = () => {
               console.log(res);
               history.push("/dashboard");
             } else {
-              alert('User Login Failed. Invalid Credentials.');
+              setLoginError(true);
             }
           })
           .catch(err => {
             console.log(err);
-            alert('User Login Failed.');
+            setLoginError(true);
           })
       })
       .catch(err => {
@@ -67,6 +68,7 @@ const Login = () => {
           </Form.Item>
 
           <Button type="primary" htmlType="submit" block>Login</Button>
+          {loginError ? <p style={{color: "red"}}>There was an error logging in. Please try again.</p> : null}
           <p>Don't have account? <Link to="/signup">Sign up</Link></p>
         </Form>
       </div>
