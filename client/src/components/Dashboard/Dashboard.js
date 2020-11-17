@@ -4,6 +4,7 @@ import { Button } from "antd";
 import TopicsList from "./MainTopic/TopicsList";
 import MainTopic from "./MainTopic/MainTopic";
 import NewTopic from "./NewTopic/NewTopic";
+import JoinTopic from "./JoinTopic";
 
 const Dashboard = () => {
   const [topic, setTopic] = useState();
@@ -41,14 +42,14 @@ const Dashboard = () => {
 
           <div className="topic-buttons">
             <NewTopic refreshTopics={refreshTopics} />
-            <Button type="secondary">Join Topic</Button>
+            <JoinTopic />
           </div>
 
           <h4 onClick={() => {logOut()}}><Link to="/">Logout</Link></h4>
         </div>
 
         {/* the main topic: includes surveys and responses */}
-        { topic ? <MainTopic topic={topic} /> : <p>Select a topic from the topics list on the left 😀</p> }
+        { topic ? <MainTopic topic={topic} /> : <p style={{marginTop: "4rem"}}>Select a topic from the topics list on the left 😀</p> }
       </div>
 
     </div>

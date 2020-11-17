@@ -124,7 +124,6 @@ const NewTopic = props => {
       >
         <Steps
           className="progress-bar"
-          progressDot
           size="small"
           current={page}
           style={{ marginBottom: "1rem" }}

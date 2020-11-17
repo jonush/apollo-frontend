@@ -4,7 +4,6 @@ import generator from "generate-password";
 
 const TopicDetails = () => {
   const {Option} = Select;
-  const userID = localStorage.getItem("userID");
 
   // set the JOIN CODE
   const joinCode = generator.generate({
