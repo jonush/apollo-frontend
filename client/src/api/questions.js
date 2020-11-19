@@ -15,6 +15,7 @@ const getQuestionByID = id => {
     })
 };
 
+// fetch a question by a topic ID
 const getQuestionByTopicID = topicID => {
   return axiosWithAuth()
     .get(`${questions}/topic/${topicID}`)
@@ -26,6 +27,7 @@ const getQuestionByTopicID = topicID => {
     })
 };
 
+// get all default questions from a topic
 const getDefaultQuestions = topicID => {
   return axiosWithAuth()
     .get(`${questions}/topic/${topicID}/default`)
@@ -37,6 +39,7 @@ const getDefaultQuestions = topicID => {
     })
 };
 
+// create a new question
 const createQuestion = question => {
   return axiosWithAuth()
     .post(questions, question)
@@ -48,6 +51,7 @@ const createQuestion = question => {
     })
 };
 
+// edit a question
 const updateQuestion = (question, id) => {
   return axiosWithAuth()
     .put(`${questions}/${id}`, question)
@@ -59,6 +63,7 @@ const updateQuestion = (question, id) => {
     })
 };
 
+// delete a question
 const deleteQuestion = id => {
   return axiosWithAuth()
     .delete(`${questions}/${id}`)

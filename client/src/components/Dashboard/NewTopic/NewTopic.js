@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, Form, Steps, message } from "antd";
+import { Button, Modal, Form, Steps } from "antd";
 import { InfoCircleTwoTone } from "@ant-design/icons";
 import { createTopic } from "../../../api/topics";
 import { createQuestion } from "../../../api/questions";

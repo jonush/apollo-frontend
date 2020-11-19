@@ -1,0 +1,110 @@
+import React, { useState, useEffect } from "react";
+import { Modal, Form, Input, Button, Divider } from "antd";
+import { createResponse } from "../../../api/responses";
+import axios from "axios";
+
+const ResponseForm = props => {
+  const [visible, setVisible] = useState(false);
+  const userID = parseInt(localStorage.getItem("userID"));
+  const [form] = Form.useForm();
+
+  const submitResponses = () => {
+    form
+      .validateFields()
+      .then(values => {
+        console.log(values);
+        axios.all(values.surveyResponses.map(r => {
+          createResponse(r)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+        }))
+        .then(() => {
+          // trigger the request to fetch responses
+          props.refresh();
+        })
+      })
+      .catch(err => console.log(err))
+  };
+
+  const cancelResponses = () => {
+    setVisible(false);
+    form.resetFields();
+  };
+
+  return (
+    <div className="response-form-container">
+      <Divider></Divider>
+
+      <Button type="primary" onClick={() => {setVisible(true)}}>Respond</Button>
+      
+      <Modal
+        className="response-form"
+        centered
+        visible={visible}
+        maskClosable={false}
+        title="Survey Responses"
+        width="50%"
+        bodyStyle={{
+          width: "70%",
+          height: "60vh",
+          overflow: "auto",
+          overflowX: "hidden",
+          margin: "0 auto"
+        }}
+        onOK={submitResponses}
+        onCancel={cancelResponses}
+        okText="Submit"
+      >
+        <Form
+          form={form}
+          layout="vertical"
+          name="response_form"
+          onFinish={submitResponses}
+        >
+          <Divider>Responses</Divider>
+          {
+            props.questions.filter(q => q.type === "request").map((q, index) => {
+              return (
+                <div className="survey-response" key={index}>
+                  <Form.Item
+                    className="closed"
+                    name={["surveyResponses", index, "survey_id"]}
+                    initialValue={props.survey.id}
+                  />
+
+                  <Form.Item
+                    className="closed"
+                    name={["surveyResponses", index, "user_id"]}
+                    initialValue={userID}
+                  />
+
+                  <Form.Item
+                    className="closed"
+                    name={["surveyResponses", index, "question"]}
+                    initialValue={q.question}
+                  />
+
+                  <Form.Item
+                    className="closed"
+                    name={["surveyResponses", index, "question_id"]}
+                    initialValue={q.question_id}
+                  />
+
+                  <Form.Item
+                    name={["surveyResponses", index, "response"]}
+                    label={q.question}
+                    initialValue={""}
+                  >
+                    <Input.TextArea autoSize={{ minRows: 2}} />
+                  </Form.Item>
+                </div>
+              );
+            })
+          }
+        </Form>
+      </Modal>
+    </div>
+  );
+};
+
+export default ResponseForm;

@@ -1,5 +1,6 @@
 @import "./Variables.scss";
 
+// CONTEXT CONTENT STYLES
 .context-container {
   width: 100%;
 
@@ -34,10 +35,11 @@
   }
 }
 
-.responses-list {
+// RESPONSE LIST STYLES
+.responses-container {
   margin-top: 2rem;
-  margin: 2rem 0 0 10rem;
-  width: 100%;
+  margin: 2rem 0 0 6rem;
+  width: 60%;
 
   h3 {
     font-size: $title-size;
@@ -58,5 +60,20 @@
       padding: 0.5rem 1rem;
       text-align: left;
     }
+  }
+}
+
+// RESPONSE FORM STYLES
+.response-form {
+  h4 {
+    font-size: $default-size;
+  }
+
+  .survey-response {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    margin-right: 2rem;
   }
 }

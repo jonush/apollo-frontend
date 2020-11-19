@@ -5,7 +5,7 @@ export const SURVEYS_SUCCESS = "SURVEYS_SUCCESS";
 export const SURVEYS_FAILURE = "SURVEYS_FAILURE";
 export const SURVEYS_RESET = "SURVEYS_RESET";
 
-// Survey Endpoints
+// Survey Endpoint
 const surveys = `${process.env.REACT_APP_API_URI}/surveys`
 
 export const fetchSurveys = id => dispatch => {
