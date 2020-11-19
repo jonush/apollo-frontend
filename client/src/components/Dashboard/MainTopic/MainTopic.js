@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import SurveysList from "./SurveysList";
 import Context from "./Context";
 import Responses from "./Responses";
-import { Button, message } from "antd";
+import { message } from "antd";
+import NewSurvey from "../NewSurvey/NewSurvey";
 
 const MainTopic = (props) => {
   const [survey, setSurvey] = useState({});
 
+  // clear the survey selection dropdown menu
   useEffect(() => {
     setSurvey({});
   }, [props.topic.id])
@@ -29,7 +31,7 @@ const MainTopic = (props) => {
         <h4 className="join-code" onClick={() => {copyJoinCode()}}>JOIN CODE: {props.topic.join_code}</h4>
 
         <div className="survey-list">
-          <Button type="primary" block>New Survey</Button>
+          <NewSurvey topic={props.topic} />
 
           {/* the survey list rendered as a select menu */}
           <SurveysList topic={props.topic} viewSurvey={viewSurvey} />

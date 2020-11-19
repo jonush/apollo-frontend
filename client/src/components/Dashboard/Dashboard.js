@@ -1,6 +1,5 @@
 import React, { useState }  from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Button } from "antd";
 import TopicsList from "./MainTopic/TopicsList";
 import MainTopic from "./MainTopic/MainTopic";
 import NewTopic from "./NewTopic/NewTopic";
@@ -17,6 +16,11 @@ const Dashboard = () => {
 
   const refreshTopics = refresh => {
     // refreshes the topic list upon creating a new topic
+    setRefresh(refresh);
+  };
+
+  const refreshSurveys = refresh => {
+    // refreshes the survey list upon creating a new survey
     setRefresh(refresh);
   };
 
@@ -42,7 +46,7 @@ const Dashboard = () => {
 
           <div className="topic-buttons">
             <NewTopic refreshTopics={refreshTopics} />
-            <JoinTopic />
+            <JoinTopic refreshSurveys={refreshSurveys}/>
           </div>
 
           <h4 onClick={() => {logOut()}}><Link to="/">Logout</Link></h4>

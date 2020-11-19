@@ -11,3 +11,48 @@
 .survey-dropdown {
   width: 100%;
 }
+
+// NEW SURVEY STYLES
+.context-response {
+  margin-bottom: 1rem;
+}
+
+.review-survey {
+  .review-questions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    
+    div {
+      margin: 1rem 4rem 1rem 0;
+    }
+  }
+
+  .review-questions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+
+    div {
+      margin-right: 2rem;
+    }
+
+    .review-question {
+      display: flex;
+    }
+  }
+
+  h3 {
+    font-size: $default-size;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  h4 {
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
