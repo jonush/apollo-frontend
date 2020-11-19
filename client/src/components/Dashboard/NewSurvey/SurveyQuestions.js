@@ -7,6 +7,8 @@ const SurveyQuestions = props => {
     <div>
       <Divider>Survey Questions</Divider>
 
+      <p>Select questions you would like your team members to answer.</p>
+
       <Form.List name="surveyQuestions">
         {(fields, { add, remove }) => {
           return (

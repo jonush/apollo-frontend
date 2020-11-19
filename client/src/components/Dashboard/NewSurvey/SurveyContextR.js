@@ -9,6 +9,8 @@ const SurveyContextR = ({ form }) => {
     <div>
       <Divider>Context Responses</Divider>
 
+      <p>Answer your context questions here.</p>
+
       {contextQuestions
         ? contextQuestions.map((q, index) => {
             return (

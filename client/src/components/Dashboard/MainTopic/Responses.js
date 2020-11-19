@@ -97,7 +97,8 @@ const Responses = props => {
             }
           </div>
 
-          { !userResponded ? 
+          {/* show the respond button if user has not responded yet AND there are survey questions to answer */}
+          { !userResponded && props.surveyQuestions.filter(q => q.type === "request").length > 0 ? 
             <ResponseForm
               survey={props.survey}
               questions={props.surveyQuestions}
