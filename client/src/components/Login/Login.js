@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Form, Input, Button, Divider } from "antd";
+import { Form, Input, Button, Divider, Spin } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 import NavBar from "../Navbar";
 import { loginUser } from "../../api/index";
 import planet from "../../images/planet.svg";
@@ -11,8 +12,14 @@ const Login = () => {
   const [form] = Form.useForm();
   const history = useHistory();
   const [loginError, setLoginError] = useState(false);
+  const [loginState, setLoginState] = useState(false);
+
+  // icon for login loading state
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
   const submitForm = () => {
+    setLoginState(true);
+
     form
       .validateFields()
       .then(values => {
@@ -21,6 +28,7 @@ const Login = () => {
             if(res.message === "SUCCESS: User logged in.") {
               form.resetFields();
               console.log(res);
+              setLoginState(false);
               history.push("/dashboard");
             } else {
               setLoginError(true);
@@ -67,7 +75,15 @@ const Login = () => {
             <Input.Password visibilityToggle={false} placeholder="Password" />
           </Form.Item>
 
-          <Button type="primary" htmlType="submit" block>Login</Button>
+          {
+            !loginState ? <Button type="primary" htmlType="submit" block>Login</Button> : <Spin
+                size="large"
+                tip="Logging In..."
+                indicator={antIcon}
+                style={{width: "100%"}}
+              />
+          }
+
           {loginError ? <p style={{color: "red"}}>There was an error logging in. Please try again.</p> : null}
           <p>Don't have account? <Link to="/signup">Sign up</Link></p>
         </Form>

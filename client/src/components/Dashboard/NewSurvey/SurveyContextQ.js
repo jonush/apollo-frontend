@@ -9,6 +9,8 @@ const SurveyContextQ = props => {
     <div className="context-questions">
       <Divider>Context</Divider>
 
+      <p>Select the context questions you want to answer.</p>
+
       <Form.Item
         style={{ marginTop: "1rem" }}
         name={["survey", "context"]}

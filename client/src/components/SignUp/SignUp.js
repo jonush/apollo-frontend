@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Form, Input, Button, Divider } from "antd";
+import { Form, Input, Button, Divider, Spin } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 import NavBar from "../Navbar";
 import { registerUser } from "../../api/index";
 import astronaut from "../../images/astronaut.svg";
@@ -10,8 +11,14 @@ import wavesR from "../../images/waves-right.svg";
 const SignUp = () => {
   const [form] = Form.useForm();
   const history = useHistory();
+  const [registerState, setRegisterState] = useState(false);
+
+  // icon for login loading state
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
   const submitForm = () => {
+    setRegisterState(true);
+
     form
       .validateFields()
       .then(values => {
@@ -22,6 +29,7 @@ const SignUp = () => {
             } else {
               console.log(res);
               form.resetFields();
+              setRegisterState(false);
               history.push("/login");
             }
           })
@@ -79,7 +87,15 @@ const SignUp = () => {
             <Input placeholder="Email" />
           </Form.Item>
 
-          <Button type="primary" htmlType="submit" block>Sign Up</Button>
+          {
+            !registerState ? <Button type="primary" htmlType="submit" block>Sign Up</Button> : <Spin
+              size="large"
+              tip="Logging In..."
+              indicator={antIcon}
+              style={{width: "100%"}}
+            />
+          }
+
           <p>Already have an account? <Link to="/login">Log In</Link></p>
         </Form>
       </div>

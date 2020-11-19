@@ -160,7 +160,7 @@ const NewSurvey = props => {
                 style={{ width: "30%" }}
                 onClick={createNewSurvey}
               >
-                Create Topic
+                Create Survey
               </Button>
             ) : (
               <Button
