@@ -17,12 +17,12 @@ const TopicReview = ({ form, page }) => {
       <div className="review-topic">
         <div>
           <h4>Title</h4>
-          <h3>{review.topic.title}</h3>
+          <h3>{review.topic.title ? review.topic.title : "None"}</h3>
         </div>
 
         <div>
           <h4>Frequency</h4>
-          <h3>{review.topic.frequency}</h3>
+          <h3>{review.topic.frequency ? review.topic.frequency : "None"}</h3>
         </div>
       </div>
 
@@ -35,7 +35,7 @@ const TopicReview = ({ form, page }) => {
                 <h3>{index + 1}. {q.question}</h3>
               </div>
             );
-          }) : null}
+          }) : <h3>None</h3>}
         </div>
 
         <div className="review-survey">
@@ -46,7 +46,7 @@ const TopicReview = ({ form, page }) => {
                 <h3>{index + 1}. {q.question}</h3>
               </div>
             );
-          }) : null}
+          }) : <h3>None</h3>}
         </div>
       </div>
     </div>
