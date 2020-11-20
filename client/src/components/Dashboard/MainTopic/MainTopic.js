@@ -7,6 +7,7 @@ import NewSurvey from "../NewSurvey/NewSurvey";
 
 const MainTopic = (props) => {
   const [survey, setSurvey] = useState({});
+  const userID = parseInt(localStorage.getItem("userID"));
 
   // clear the survey selection dropdown menu
   useEffect(() => {
@@ -31,8 +32,10 @@ const MainTopic = (props) => {
         <h4 className="join-code" onClick={() => {copyJoinCode()}}>JOIN CODE: {props.topic.join_code}</h4>
 
         <div className="survey-list">
-          <NewSurvey topic={props.topic} />
-
+          {
+            props.topic.leader_id === userID ? <NewSurvey topic={props.topic} /> : null
+          }
+          
           {/* the survey list rendered as a select menu */}
           <SurveysList topic={props.topic} viewSurvey={viewSurvey} />
         </div>

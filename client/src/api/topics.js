@@ -26,6 +26,17 @@ const getTopicByLeaderID = leaderID => {
     })
 };
 
+const getTopicsByUserID = userID => {
+  return axiosWithAuth()
+    .get(`${topics}/user/${userID}`)
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      console.log(err);
+    })
+};
+
 const createTopic = topic => {
   return axiosWithAuth()
     .post(topics, topic)
@@ -62,6 +73,7 @@ const deleteTopic = id => {
 export {
   getTopicByID,
   getTopicByLeaderID,
+  getTopicsByUserID,
   createTopic,
   updateTopic,
   deleteTopic,
