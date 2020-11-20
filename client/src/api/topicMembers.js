@@ -3,10 +3,10 @@ import { axiosWithAuth } from "./index";
 // Topic Endpoints
 const topicMembers = `${process.env.REACT_APP_API_URI}/topic-members`;
 
-// fetch a topic member by their ID
-const getMemberByID = id => {
+// fetch all topic members
+const getTopicMembers = () => {
   return axiosWithAuth()
-    .get(`${topicMembers}/${id}`)
+    .get(topicMembers)
     .then(res => {
       return res.data;
     })
@@ -15,9 +15,10 @@ const getMemberByID = id => {
     })
 };
 
-const getMemberByUserID = userID => {
+// fetch a topic member by their ID
+const getMemberByID = id => {
   return axiosWithAuth()
-    .get(`${topicMembers}/topic/${userID}`)
+    .get(`${topicMembers}/${id}`)
     .then(res => {
       return res.data;
     })
@@ -60,8 +61,8 @@ const deleteMember = id => {
 };
 
 export {
+  getTopicMembers,
   getMemberByID,
-  getMemberByUserID,
   addMember,
   updateMember,
   deleteMember,

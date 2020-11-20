@@ -53,7 +53,7 @@ const Dashboard = () => {
         </div>
 
         {/* the main topic: includes surveys and responses */}
-        { topic ? <MainTopic topic={topic} /> : <p style={{marginTop: "4rem"}}>Select a topic from the topics list on the left 😀</p> }
+        { topic ? <MainTopic topic={topic} /> : <p style={{marginTop: "4rem", width: "20%"}}>Get started by creating a new topic! The topics you are a leader or member of will show up on the left {" "} 😀</p> }
       </div>
 
     </div>

@@ -1,17 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchTopics } from "../../../state/actions/fetchTopics";
+import { getTopicByLeaderID, getTopicsByUserID } from "../../../api/topics";
 
 const TopicsList = props => {
+  const userID = parseInt(localStorage.getItem("userID"));
+  const [topics, setTopics] = useState([]);
+
   useEffect(() => {
-    props.fetchTopics();
     props.refreshTopics(false);
+
+    getTopicsByUserID(userID)
+      .then(userTopics => {
+        getTopicByLeaderID(userID)
+          .then(leaderTopics => {
+            let tempTopics = userTopics.concat(leaderTopics);
+            setTopics(tempTopics);
+          })
+          .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
   }, [props.refreshTopics])
 
   return (
   <div className="topics-list">
       {
-        props.topics ? props.topics.map((topic, index) => {
+        topics ? topics.map((topic, index) => {
           return (
             <h3
               key={index}
