@@ -161,3 +161,18 @@
     padding: 0;
   }
 }
+
+// EDIT TOPIC STYLES
+.topic-settings-button {
+  border: none;
+  background: none;
+  margin-left: 2rem;
+
+  svg {
+    width: 90%;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -30,6 +30,7 @@ const TopicsList = props => {
             <h3
               key={index}
               className={props.currentID === topic.id ? "topic-circle selected-topic" : "topic-circle"}
+              //style={topic.leader_id === userID ? {border: "2px solid pink"} : null}
               onClick={() => {props.viewTopic(topic)}}
             >
               {index + 1}

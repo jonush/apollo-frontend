@@ -31,7 +31,7 @@ const TopicSurveyQ = () => {
                     {...field}
                     className="closed"
                     name={[field.name, "default"]}
-                    initialValue={false}
+                    initialValue={true}
                   ></Form.Item>
 
                   <Form.Item
