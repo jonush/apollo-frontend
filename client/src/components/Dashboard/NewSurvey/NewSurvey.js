@@ -4,7 +4,6 @@ import SurveyContextQ from "./SurveyContextQ";
 import SurveyContextR from "./SurveyContextR";
 import SurveyQuestions from "./SurveyQuestions";
 import SurveyReview from "./SurveyReview";
-import { InfoCircleTwoTone } from "@ant-design/icons";
 import { createSurvey } from "../../../api/surveys";
 import { getDefaultQuestions } from "../../../api/questions";
 import { createSurveyQuestion } from "../../../api/surveyQuestions";
@@ -26,7 +25,7 @@ const NewSurvey = props => {
         setQuestions(res);
       })
       .catch(err => console.log(err))
-  }, []);
+  }, [props.updatedTopic]);
 
   // filter the questions for use in the new survey modal
   useEffect(() => {
@@ -83,6 +82,7 @@ const NewSurvey = props => {
       .catch(err => console.log(err));
   };
 
+  // upon selecting questions, assign the proper question id to determine if the question is new or untouched
   const getQuestionID = values => {
     for(let i = 0; i < contextQ.length; i++) {
       for(let j = 0; j < values.contextQuestions.length; j++) {
@@ -93,6 +93,7 @@ const NewSurvey = props => {
     }
   };
 
+  // for all selected questions, assign the survey_id from the newly created survey
   const getSurveyID = (values, surveyID) => {
     getQuestionID(values);
 

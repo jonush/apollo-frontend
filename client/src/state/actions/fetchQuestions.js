@@ -21,6 +21,19 @@ export const fetchQuestions = id => dispatch => {
     })
 };
 
+export const fetchDefaultQuestions = id => dispatch => {
+  dispatch({ type: QUESTIONS_START })
+
+  axiosWithAuth()
+    .get(`${questions}/topic/${id}/default`)
+    .then(res => {
+      dispatch({ type: QUESTIONS_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+      dispatch({ type: QUESTIONS_FAILURE, payload: err })
+    })
+};
+
 export const resetQuestions = () => dispatch => {
   dispatch({ type: QUESTIONS_RESET })
 }
