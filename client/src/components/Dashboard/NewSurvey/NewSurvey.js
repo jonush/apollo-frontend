@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Form, Steps } from "antd";
+import { connect } from "react-redux";
+import { fetchSurveys } from "../../../state/actions/fetchSurveys";
 import SurveyContextQ from "./SurveyContextQ";
 import SurveyContextR from "./SurveyContextR";
 import SurveyQuestions from "./SurveyQuestions";
@@ -60,22 +62,31 @@ const NewSurvey = props => {
           })
           .then(() => {
             axios.all(values.contextQuestions.map(cQ => {
-              createSurveyQuestion(cQ);
+              createSurveyQuestion(cQ)
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
             }))
-            .then(() => [
-              axios.all(values.contextResponses.map(cR=> {
-                createResponse(cR);
-              }))
-            ])
             .then(() => {
-              axios.all(values.surveyQuestions.map(sQ => {
-                createSurveyQuestion(sQ)
+              axios.all(values.contextResponses.map(cR=> {
+                createResponse(cR)
+                  .then(res => console.log(res))
+                  .catch(err => console.log(err))
               }))
+              .then(() => {
+                axios.all(values.surveyQuestions.map(sQ => {
+                  createSurveyQuestion(sQ)
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err))
+                }))
+                .then(res => {
+                  props.fetchSurveys(props.topic.id);
+                  cancelSurvey();
+                })
+                .catch(err => console.log(err));
+              })
+              .catch(err => console.log(err));
             })
-            .then(res => {
-              cancelSurvey();
-              props.refreshSurveys();
-            })
+            .catch(err => console.log(err));
           })
           .catch(err => console.log(err))
       })
@@ -87,7 +98,33 @@ const NewSurvey = props => {
     for(let i = 0; i < contextQ.length; i++) {
       for(let j = 0; j < values.contextQuestions.length; j++) {
         if(contextQ[i].question === values.contextQuestions[j].question) {
-          values.contextQuestions[j].question_id = contextQ[i].id;
+          values.contextQuestions[j] = {
+            ...values.contextQuestions[j],
+            question_id: contextQ[i].id
+          }
+        }
+        else {
+          values.contextQuestions[j] = {
+            ...values.contextQuestions[j],
+            default: false,
+          }
+        }
+      }
+    }
+
+    for(let i = 0; i < surveyQ.length; i++) {
+      for(let j = 0; j < values.surveyQuestions.length; j++) {
+        if(surveyQ[i].question === values.surveyQuestions[j].question) {
+          values.surveyQuestions[j] = {
+            ...values.surveyQuestions[j],
+            question_id: surveyQ[i].id
+          }
+        }
+        else {
+          values.surveyQuestions[j] = {
+            ...values.surveyQuestions[j],
+            default: false,
+          }
         }
       }
     }
@@ -100,21 +137,24 @@ const NewSurvey = props => {
     for(let i = 0; i < values.contextQuestions.length; i++) {
       values.contextQuestions[i] = {
         ...values.contextQuestions[i], 
-        survey_id: surveyID
+        survey_id: surveyID,
+        topic_id: props.topic.id,
       }
     }
 
     for(let i = 0; i < values.contextResponses.length; i++) {
       values.contextResponses[i] = {
         ...values.contextResponses[i], 
-        survey_id: surveyID
+        survey_id: surveyID,
+        topic_id: props.topic.id,
       }
     }
 
     for(let i = 0; i < values.surveyQuestions.length; i++) {
       values.surveyQuestions[i] = {
         ...values.surveyQuestions[i], 
-        survey_id: surveyID
+        survey_id: surveyID,
+        topic_id: props.topic.id,
       }
     }
   };
@@ -214,4 +254,12 @@ const NewSurvey = props => {
   );
 };
 
-export default NewSurvey;
+const mapStateToProps = state => {
+  return {
+    isFetching: state.surveysList.isFetching,
+    surveys: state.surveysList.surveys,
+    errors: state.surveysList.errors
+  }
+};
+
+export default connect(mapStateToProps, {fetchSurveys})(NewSurvey);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Form, Input, Button, Divider } from "antd";
 import { createResponse } from "../../../api/responses";
 import axios from "axios";
@@ -14,7 +14,7 @@ const ResponseForm = props => {
       .then(values => {
         console.log(values);
         axios.all(values.surveyResponses.map(r => {
-          createResponse(r)
+          return createResponse(r)
             .then(res => console.log(res))
             .catch(err => console.log(err))
         }))
@@ -23,8 +23,12 @@ const ResponseForm = props => {
           props.refresh();
         })
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log("RESPONSE FORM ERROR:", err))
   };
+
+  const submitResponse = () => {
+    console.log("TESTING THE SUBMIT");
+  }
 
   const cancelResponses = () => {
     setVisible(false);
@@ -51,15 +55,30 @@ const ResponseForm = props => {
           overflowX: "hidden",
           margin: "0 auto"
         }}
-        onOK={submitResponses}
-        onCancel={cancelResponses}
         okText="Submit"
+        footer={
+          <>
+            <Button
+              type="secondary"
+              style={{ width: "30%" }}
+              onClick={cancelResponses}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="primary"
+              style={{ width: "30%" }}
+              onClick={submitResponses}
+            >
+              Submit Responses
+            </Button>
+          </>
+        }
       >
         <Form
           form={form}
           layout="vertical"
           name="response_form"
-          onFinish={submitResponses}
         >
           <Divider>Responses</Divider>
           {
@@ -70,25 +89,31 @@ const ResponseForm = props => {
                     className="closed"
                     name={["surveyResponses", index, "survey_id"]}
                     initialValue={props.survey.id}
-                  />
+                  ></Form.Item>
 
                   <Form.Item
                     className="closed"
                     name={["surveyResponses", index, "user_id"]}
                     initialValue={userID}
-                  />
+                  ></Form.Item>
 
                   <Form.Item
                     className="closed"
                     name={["surveyResponses", index, "question"]}
                     initialValue={q.question}
-                  />
+                  ></Form.Item>
+
+                  <Form.Item
+                    className="closed"
+                    name={["surveyResponses", index, "topic_id"]}
+                    initialValue={props.topic.id}
+                  ></Form.Item>
 
                   <Form.Item
                     className="closed"
                     name={["surveyResponses", index, "question_id"]}
                     initialValue={q.question_id}
-                  />
+                  ></Form.Item>
 
                   <Form.Item
                     name={["surveyResponses", index, "response"]}

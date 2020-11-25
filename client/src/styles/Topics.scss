@@ -2,7 +2,7 @@
 
 // TOPICS LIST STYLES
 .topics-list {
-  position: absolute;
+  position: fixed;
   left: 0;
   background: $main-color;
   height: 100vh;
@@ -72,6 +72,8 @@
 .topic-title {
   font-size: $title-size;
   font-weight: bold;
+  display: flex;
+  align-items: center;
 }
 
 .join-code {

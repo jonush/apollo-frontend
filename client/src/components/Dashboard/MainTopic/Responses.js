@@ -24,7 +24,7 @@ const Responses = props => {
     };
   }, [props.survey, refreshResponses]);
 
-  // if the user has responded, hide the respond button
+  // if the user has responded or is the leader of the topic, hide the respond button
   useEffect(() => {
     checkResponses();
   }, [props.responses, props.survey.id, props.topic.id]);
@@ -42,17 +42,25 @@ const Responses = props => {
     }, {});
   };
 
+  // check if the user has already responded, or is the topic leader
   const checkResponses = () => {
     setUserResponded(false);
     for(let i = 0; i < props.responses.length; i++) {
+      console.log("ACCESSED");
       if(props.responses[i].user_id === userID || userID === props.topic.leader_id) {
-        console.log(props.responses[i].user_id, userID)
         setUserResponded(true);
+        console.log(true);
         break
       }
     }
+
+    // if there are no responses yet
+    if(props.responses.length < 1 && userID === props.topic.leader_id) {
+      setUserResponded(true);
+    }
   };
 
+  // refresh the list of responses after the user responds
   const refresh = () => {
     setRefreshResponses(true);
   };
@@ -62,10 +70,10 @@ const Responses = props => {
       {
         // if a survey is selected, show the responses (if any)
         props.survey.id ? 
-        <div className="responses-container">
+        <div>
           <h3><Moment date={props.survey.created_at} format="LL" /></h3>
 
-          <div>
+          <div className="responses-list">
             {
               // if there are responses to the survey questions, show them
               props.responses.filter(r => r.type === "request").length > 0 ? Object.keys(replies).map((r, index) => (
@@ -84,9 +92,9 @@ const Responses = props => {
               )) : // otherwise, show the survey request questions
               <div>
                 {
-                  props.surveyQuestions.filter(q => q.type === "request").map(sQ => {
+                  props.surveyQuestions.filter(q => q.type === "request").map((sQ, index) => {
                     return (
-                      <div className="response">
+                      <div className="response" key={index} >
                         <h4>{sQ.question}</h4>
                         <p>There are no responses yet.</p>
                       </div>
@@ -100,6 +108,7 @@ const Responses = props => {
           {/* show the respond button if user has not responded yet AND there are survey questions to answer */}
           { !userResponded && props.surveyQuestions.filter(q => q.type === "request").length > 0 ? 
             <ResponseForm
+              topic={props.topic}
               survey={props.survey}
               questions={props.surveyQuestions}
               refresh={refresh}

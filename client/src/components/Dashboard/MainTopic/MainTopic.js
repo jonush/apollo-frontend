@@ -36,6 +36,7 @@ const MainTopic = (props) => {
         message.success("The topic has been deleted.");
         // refresh the topics list upon deleting the topic
         props.refreshTopics();
+        props.viewTopic(null);
       })
       .catch((err) => {
         message.error("There was error deleting this topic.");
