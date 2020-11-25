@@ -38,8 +38,15 @@
 // RESPONSE LIST STYLES
 .responses-container {
   margin-top: 2rem;
-  margin: 2rem 0 0 6rem;
-  width: 60%;
+  padding: 2rem 0 0 10rem;
+  width: 80%;
+  height: 100%;
+
+  .responses-list {
+    width: 60%;
+    height: 600px;
+    overflow-y: auto;
+  }
 
   h3 {
     font-size: $title-size;

@@ -19,7 +19,7 @@ const SurveyReview = ({ form, page }) => {
           <h4>Context Questions</h4>
           {review.contextQuestions !== undefined ? review.contextQuestions.map((q, index) => {
             return (
-              <div className="review-question" key={index}>
+              <div className="review-question" key={`rCQ-${index}`}>
                 <h3 style={{marginRight: ".5rem"}}>{index + 1}.</h3> <h3>{q.question}</h3>
               </div>
             );
@@ -30,7 +30,7 @@ const SurveyReview = ({ form, page }) => {
           <h4>Context Responses</h4>
           {review.contextResponses !== undefined ? review.contextResponses.map((r, index) => {
             return (
-              <div className="review-question" key={index}>
+              <div className="review-question" key={`rCR-${index}`}>
                 <h3 style={{marginRight: ".5rem"}}>{index + 1}.</h3> <h3>{r.response}</h3>
               </div>
             );
@@ -41,7 +41,7 @@ const SurveyReview = ({ form, page }) => {
           <h4>Survey Questions</h4>
           {review.surveyQuestions !== undefined ? review.surveyQuestions.map((q, index) => {
             return (
-              <div className="review-question" key={index}>
+              <div className="review-question" key={`rSQ-${index}`}>
                 <h3 style={{marginRight: ".5rem"}}>{index + 1}.</h3> <h3>{q.question}</h3>
               </div>
             );

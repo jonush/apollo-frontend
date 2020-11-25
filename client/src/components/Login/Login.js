@@ -76,16 +76,19 @@ const Login = () => {
           </Form.Item>
 
           {
-            !loginState ? <Button type="primary" htmlType="submit" block>Login</Button> : <Spin
+            !loginState ? 
+              <div>
+                <Button type="primary" htmlType="submit" block>Login</Button>
+                <p>Don't have account? <Link to="/signup">Sign up</Link></p>
+              </div> : <Spin
                 size="large"
                 tip="Logging In..."
                 indicator={antIcon}
-                style={{width: "100%"}}
+                style={{width: "100%", marginTop: "2rem"}}
               />
           }
 
-          {loginError ? <p style={{color: "red"}}>There was an error logging in. Please try again.</p> : null}
-          <p>Don't have account? <Link to="/signup">Sign up</Link></p>
+          {loginError && !loginState ? <p style={{color: "red"}}>There was an error logging in. Please try again.</p> : null}
         </Form>
       </div>
 

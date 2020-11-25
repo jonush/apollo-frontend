@@ -58,6 +58,10 @@ a {
   margin: 0 auto;
 }
 
+.dashboard {
+  height: 100vh;
+}
+
 // NAV STYLES
 nav {
   width: 79%;
@@ -185,11 +189,6 @@ nav {
   border-radius: 5px;
   height: 100vh;
 }
-
-// .tabs-box {
-//   width: 80%;
-//   height: 80%;
-// }
 
 .tab-content {
   display: flex;

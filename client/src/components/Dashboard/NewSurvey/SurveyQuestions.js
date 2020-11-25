@@ -14,7 +14,7 @@ const SurveyQuestions = props => {
           return (
             <div>
               {fields.map((field, index) => (
-                <div key={index}>
+                <div key={`sQ-${index}`}>
                   <Form.Item
                     {...field}
                     className="closed"

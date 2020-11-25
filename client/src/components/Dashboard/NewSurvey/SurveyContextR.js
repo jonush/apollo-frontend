@@ -14,7 +14,7 @@ const SurveyContextR = ({ form }) => {
       {contextQuestions
         ? contextQuestions.map((q, index) => {
             return (
-              <div className="context-response" key={index}>
+              <div className="context-response" key={`cR-${index}`}>
                 <Form.Item
                   className="closed"
                   name={["contextResponses", index, "survey_id"]}
@@ -35,8 +35,8 @@ const SurveyContextR = ({ form }) => {
 
                 <Form.Item
                   className="closed"
-                  name={["contextResponses", index, "question_id"]}
-                  initialValue={q.id}
+                  name={["contextResponses", index, "style"]}
+                  initialValue={q.style}
                 />
 
                 <Form.Item

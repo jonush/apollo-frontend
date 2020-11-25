@@ -88,15 +88,18 @@ const SignUp = () => {
           </Form.Item>
 
           {
-            !registerState ? <Button type="primary" htmlType="submit" block>Sign Up</Button> : <Spin
+            !registerState ? 
+            <div>
+              <Button type="primary" htmlType="submit" block>Sign Up</Button>
+              <p>Already have an account? <Link to="/login">Log In</Link></p>
+            </div>
+            : <Spin
               size="large"
-              tip="Logging In..."
+              tip="Signing Up..."
               indicator={antIcon}
-              style={{width: "100%"}}
+              style={{width: "100%", marginTop: "2rem"}}
             />
           }
-
-          <p>Already have an account? <Link to="/login">Log In</Link></p>
         </Form>
       </div>
 

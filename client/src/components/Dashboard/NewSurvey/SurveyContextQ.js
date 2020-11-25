@@ -38,7 +38,7 @@ const SurveyContextQ = props => {
           return (
             <div>
               {fields.map((field, index) => (
-                <div key={index}>
+                <div key={`cQ-${index}`}>
                   <Form.Item
                     {...field}
                     className="closed"
@@ -49,8 +49,8 @@ const SurveyContextQ = props => {
                   <Form.Item
                     {...field}
                     className="closed"
-                    name={[field.name, "question_id"]}
-                    initialValue={null}
+                    name={[field.name, "default"]}
+                    initialValue={false}
                   ></Form.Item>
 
                   <Form.Item
