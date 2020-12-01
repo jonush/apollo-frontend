@@ -59,27 +59,27 @@ const Login = () => {
           className="user-form"
           size="medium"
         >
-          <Divider className="divider">Log In</Divider>
+          <Divider className="divider">Login</Divider>
 
           <Form.Item
             name="email"
             rules={[{ required: true, message: 'Please input your email.' }]}
           >
-            <Input placeholder="Email" />
+            <Input data-testid="login-email" placeholder="Email" />
           </Form.Item>
 
           <Form.Item
             name="password"
             rules={[{ required: true, message: 'Please enter a password.' }]}
           >
-            <Input.Password visibilityToggle={false} placeholder="Password" />
+            <Input.Password data-testid="login-password" visibilityToggle={false} placeholder="Password" />
           </Form.Item>
 
           {
             !loginState ? 
               <div>
-                <Button type="primary" htmlType="submit" block>Login</Button>
-                <p>Don't have account? <Link to="/signup">Sign up</Link></p>
+                <Button data-testid="login-submit" type="primary" htmlType="submit" block>Log In</Button>
+                <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
               </div> : <Spin
                 size="large"
                 tip="Logging In..."
