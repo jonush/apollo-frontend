@@ -63,34 +63,34 @@ const SignUp = () => {
             name="first_name"
             rules={[{ required: true, message: 'Please input your first name.' }]}
           >
-            <Input placeholder="First Name" />
+            <Input data-testid="signup-first-name" placeholder="First Name" />
           </Form.Item>
 
           <Form.Item
             name="last_name"
             rules={[{ required: true, message: 'Please input your last name.' }]}
           >
-            <Input placeholder="Last Name" />
+            <Input data-testid="signup-last-name" placeholder="Last Name" />
           </Form.Item>
 
           <Form.Item
             name="password"
             rules={[{ required: true, message: 'Please enter a password.' }]}
           >
-            <Input.Password visibilityToggle={false} placeholder="Password" />
+            <Input.Password data-testid="signup-password" visibilityToggle={false} placeholder="Password" />
           </Form.Item>
 
           <Form.Item
             name="email"
             rules={[{ required: true, message: 'Please input your email.' }]}
           >
-            <Input placeholder="Email" />
+            <Input data-testid="signup-email" placeholder="Email" />
           </Form.Item>
 
           {
             !registerState ? 
             <div>
-              <Button type="primary" htmlType="submit" block>Sign Up</Button>
+              <Button data-testid="sign-up-submit" type="primary" htmlType="submit" block>Sign Up</Button>
               <p>Already have an account? <Link to="/login">Log In</Link></p>
             </div>
             : <Spin
