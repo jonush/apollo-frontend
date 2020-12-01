@@ -22,6 +22,7 @@ const JoinTopic = props => {
           .then(res => {
             form.resetFields();
             setVisible(false);
+            props.refreshTopics();
             message.info(`Success! Joined Topic.`);
           })
           .catch(err => {

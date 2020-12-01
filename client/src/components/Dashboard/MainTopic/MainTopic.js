@@ -96,7 +96,7 @@ const MainTopic = (props) => {
         <div className="survey-list">
           {/* if user is topic leader, show new survey button */}
           {props.topic.leader_id === userID ? (
-            <NewSurvey topic={props.topic} updatedTopic={edit} />
+            <NewSurvey refreshSurveys={props.refreshSurveys} topic={props.topic} updatedTopic={edit} />
           ) : null}
 
           {/* the survey list rendered as a select menu */}

@@ -46,7 +46,7 @@ const Dashboard = () => {
 
           <div className="topic-buttons">
             <NewTopic refreshTopics={refreshTopics} />
-            <JoinTopic refreshSurveys={refreshSurveys}/>
+            <JoinTopic refreshTopics={refreshTopics} />
           </div>
 
           <h4 onClick={() => {logOut()}}><Link to="/">Logout</Link></h4>
@@ -58,6 +58,7 @@ const Dashboard = () => {
           <MainTopic
             topic={topic}
             refreshTopics={refreshTopics}
+            refreshSurveys={refreshSurveys}
             viewTopic={viewTopic}
           /> : <p style={{marginTop: "4rem", width: "20%"}}>Get started by creating a new topic! The topics you are a leader or member of will show up on the left {" "} 😀</p>
         }

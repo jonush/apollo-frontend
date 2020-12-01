@@ -46,10 +46,8 @@ const Responses = props => {
   const checkResponses = () => {
     setUserResponded(false);
     for(let i = 0; i < props.responses.length; i++) {
-      console.log("ACCESSED");
       if(props.responses[i].user_id === userID || userID === props.topic.leader_id) {
         setUserResponded(true);
-        console.log(true);
         break
       }
     }
@@ -105,14 +103,16 @@ const Responses = props => {
             }
           </div>
 
-          {/* show the respond button if user has not responded yet AND there are survey questions to answer */}
-          { !userResponded && props.surveyQuestions.filter(q => q.type === "request").length > 0 ? 
+          { 
+            // show the respond button if user has not responded yet AND there are survey questions to answer
+            !userResponded && props.surveyQuestions.filter(q => q.type === "request").length > 0 ? 
             <ResponseForm
               topic={props.topic}
               survey={props.survey}
               questions={props.surveyQuestions}
               refresh={refresh}
-            /> : null }
+            /> : null 
+          }
         </div> : null
       }
     </>

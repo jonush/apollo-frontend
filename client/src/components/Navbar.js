@@ -10,8 +10,8 @@ const Navbar = () => {
       <NavLink to="/" className="logo">Apollo</NavLink>
 
       <div className="nav-actions">
-        <NavLink className={location.pathname === "/signup" || location.pathname === "/login" ? "hidden-nav" : null} to="/signup">Sign Up</NavLink>
-        <NavLink className={location.pathname === "/login" || location.pathname === "/signup" ? "hidden-nav" : null} to="/login">Log In</NavLink>
+        <NavLink data-testid="sign-up-btn" className={location.pathname === "/signup" || location.pathname === "/login" ? "hidden-nav" : null} to="/signup">Sign Up</NavLink>
+        <NavLink data-testid="login-btn" className={location.pathname === "/login" || location.pathname === "/signup" ? "hidden-nav" : null} to="/login">Log In</NavLink>
       </div>
     </nav>
   )
