@@ -21,14 +21,11 @@ const ResponseForm = props => {
         .then(() => {
           // trigger the request to fetch responses
           props.refresh();
+          cancelResponses();
         })
       })
       .catch(err => console.log("RESPONSE FORM ERROR:", err))
   };
-
-  const submitResponse = () => {
-    console.log("TESTING THE SUBMIT");
-  }
 
   const cancelResponses = () => {
     setVisible(false);
@@ -55,6 +52,7 @@ const ResponseForm = props => {
           overflowX: "hidden",
           margin: "0 auto"
         }}
+        onCancel={cancelResponses}
         okText="Submit"
         footer={
           <>
@@ -101,6 +99,12 @@ const ResponseForm = props => {
                     className="closed"
                     name={["surveyResponses", index, "question"]}
                     initialValue={q.question}
+                  ></Form.Item>
+
+                  <Form.Item
+                    className="closed"
+                    name={["surveyResponses", index, "style"]}
+                    initialValue={q.style}
                   ></Form.Item>
 
                   <Form.Item
