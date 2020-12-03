@@ -4,7 +4,7 @@ import { fetchTopics } from "../../state/actions/fetchTopics";
 import { addMember } from "../../api/topicMembers";
 import { Button, Modal, Form, Input, message } from "antd";
 
-const JoinTopic = props => {
+export const JoinTopic = props => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
   const userID= localStorage.getItem("userID");
@@ -51,6 +51,7 @@ const JoinTopic = props => {
     <div>
       <Button
         type="secondary"
+        data-testid="join-topic-btn"
         onClick={() => {
           setVisible(true);
         }}
@@ -62,7 +63,7 @@ const JoinTopic = props => {
         visible={visible}
         width={400}
         title="Join Topic"
-        okText="Join"
+        okText="Enter"
         cancelText="Cancel"
         onCancel={cancelJoin}
         onOk={join}
@@ -71,31 +72,31 @@ const JoinTopic = props => {
         <Form name="join-form" layout="vertical" form={form}>
           <Form.Item
             name={["join_code"]}
-            label="Enter your join code:"
+            label="Input your join code:"
             rules={[
-              { required: true, message: "Please enter your join code." }
+              { required: true, message: "Please input your join code." }
             ]}
           >
-            <Input placeholder="ex: 4gH7Dz" />
+            <Input data-testid="join-topic-form" placeholder="ex: 4gH7Dz" />
           </Form.Item>
 
           <Form.Item
             name={["newMember", "topic_id"]}
             className="closed"
             initialValue={""}
-          />
+          ></Form.Item>
 
           <Form.Item
             name={["newMember", "user_id"]}
             className="closed"
             initialValue={userID}
-          />
+          ></Form.Item>
 
           <Form.Item
             name={["newMember", "role"]}
             className="closed"
             initialValue={"user"}
-          />
+          ></Form.Item>
         </Form>
       </Modal>
     </div>

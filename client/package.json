@@ -8,9 +8,12 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.8.2",
+    "aos": "^2.3.4",
     "axios": "^0.21.0",
     "craco-antd": "^1.19.0",
     "craco-less": "^1.17.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint-webpack-plugin": "^2.2.1",
     "generate-password": "^1.5.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
@@ -33,7 +36,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test --env=jest-environment-jsdom-sixteen",
+    "test": "craco test --env=jest-environment-jsdom-sixteen --testURL http://localhost:3000",
     "coverage": "npm test -- --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
@@ -46,10 +49,6 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/src/stories/",
-      "<rootDir>/node_modules/"
     ]
   },
   "browserslist": {
@@ -65,6 +64,7 @@
     ]
   },
   "devDependencies": {
-    "jest-canvas-mock": "^2.3.0"
+    "jest-canvas-mock": "^2.3.0",
+    "redux-mock-store": "^1.5.4"
   }
 }

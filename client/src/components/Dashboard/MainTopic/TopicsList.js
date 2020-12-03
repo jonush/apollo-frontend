@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchTopics } from "../../../state/actions/fetchTopics";
 import { getTopicByLeaderID, getTopicsByUserID } from "../../../api/topics";
 
-const TopicsList = props => {
+export const TopicsList = props => {
   const userID = parseInt(localStorage.getItem("userID"));
   const [topics, setTopics] = useState([]);
 
@@ -28,6 +28,7 @@ const TopicsList = props => {
         topics ? topics.map((topic, index) => {
           return (
             <h3
+              data-testid={`topic-${index + 1}`}
               key={index}
               className={props.currentID === topic.id ? "topic-circle selected-topic" : "topic-circle"}
               //style={topic.leader_id === userID ? {border: "2px solid pink"} : null}
