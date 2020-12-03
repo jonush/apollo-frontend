@@ -4,7 +4,7 @@ import { fetchTopics } from "../../state/actions/fetchTopics";
 import { addMember } from "../../api/topicMembers";
 import { Button, Modal, Form, Input, message } from "antd";
 
-const JoinTopic = props => {
+export const JoinTopic = props => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
   const userID= localStorage.getItem("userID");
@@ -51,6 +51,7 @@ const JoinTopic = props => {
     <div>
       <Button
         type="secondary"
+        data-testid="join-topic-btn"
         onClick={() => {
           setVisible(true);
         }}
@@ -76,26 +77,26 @@ const JoinTopic = props => {
               { required: true, message: "Please enter your join code." }
             ]}
           >
-            <Input placeholder="ex: 4gH7Dz" />
+            <Input data-testid="join-topic-form" placeholder="ex: 4gH7Dz" />
           </Form.Item>
 
           <Form.Item
             name={["newMember", "topic_id"]}
             className="closed"
             initialValue={""}
-          />
+          ></Form.Item>
 
           <Form.Item
             name={["newMember", "user_id"]}
             className="closed"
             initialValue={userID}
-          />
+          ></Form.Item>
 
           <Form.Item
             name={["newMember", "role"]}
             className="closed"
             initialValue={"user"}
-          />
+          ></Form.Item>
         </Form>
       </Modal>
     </div>

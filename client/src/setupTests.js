@@ -6,18 +6,32 @@ import "@testing-library/jest-dom/extend-expect";
 import "jest-prop-type-error";
 
 // fix: `matchMedia` not present, legacy browsers require a polyfill
-global.matchMedia = global.matchMedia || function() {
-  return {
-      matches : false,
-      addListener : function() {},
-      removeListener: function() {}
-  }
-}
+global.matchMedia =
+  global.matchMedia ||
+  function () {
+    return {
+      matches: false,
+      addListener: function () {},
+      removeListener: function () {},
+    };
+  };
 
 // disable the async validator warning (for form validation) when running tests
-const warn = console.warn
+const warn = console.warn;
 console.warn = (...args) => {
-  if(typeof args[0] === 'string' && args[0].startsWith('async-validator:')) return
+  if (typeof args[0] === "string" && args[0].startsWith("async-validator:")) {
+    return;
+  }
 
-  warn(...args)
-}
+  warn(...args);
+};
+
+// disable the Form.Item name warning for ant design
+const error = console.error;
+console.error = (...args) => {
+  if((typeof args[0] === "string" && args[0].startsWith("Warning: [antd: Form.Item]"))) {
+    return;
+  }
+
+  error(...args);
+};

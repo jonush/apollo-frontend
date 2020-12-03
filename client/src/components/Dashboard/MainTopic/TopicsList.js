@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchTopics } from "../../../state/actions/fetchTopics";
 import { getTopicByLeaderID, getTopicsByUserID } from "../../../api/topics";
 
-const TopicsList = props => {
+export const TopicsList = props => {
   const userID = parseInt(localStorage.getItem("userID"));
   const [topics, setTopics] = useState([]);
 
