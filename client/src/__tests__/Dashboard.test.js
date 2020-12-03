@@ -7,8 +7,11 @@ import TopicsList from "../components/Dashboard/MainTopic/TopicsList";
 import configureMockStore from "redux-mock-store";
 import { Provider } from "react-redux"
 import thunk from "redux-thunk";
+import { getTopics } from "../api/topics";
 
 const mockStore = configureMockStore([thunk]);
+
+localStorage.setItem("userID", 5);
 
 // tests for the Dashboard component
 describe("<Dashboard /> testing suite", () => {
@@ -17,7 +20,15 @@ describe("<Dashboard /> testing suite", () => {
     store = mockStore({
       topicsList: {
         isFetching: false,
-        topics: [],
+        topics: [{
+          "id": 1,
+          "title": "Stand Up",
+          "frequency": "Daily",
+          "join_code": "K6C8XY",
+          "leader_id": 1,
+          "created_at": "2020-11-03 23:33:47",
+          "updated_at": "2020-11-03 23:33:47"
+        },],
         errors: "",
       }
     })
@@ -30,14 +41,11 @@ describe("<Dashboard /> testing suite", () => {
         <Router>
           <Dashboard>
             <JoinTopic />
-            <TopicsList />
           </Dashboard>
         </Router>
       </Provider>,
     );
     
     expect(wrapper.getByTestId("join-topic-btn")).toBeInTheDocument();
-    await waitFor(() => fireEvent.click(wrapper.getByTestId("join-topic-btn")));
-    expect(wrapper.getByTestId("join-topic-form")).toBeInTheDocument();
   })
 })

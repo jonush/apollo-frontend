@@ -47,13 +47,29 @@
 
   h3 {
     font-weight: bold;
+
+    @media (max-width: 1080px) {
+      display: none;
+    }
   }
 
   .topic-buttons {
     display: flex;
 
+    @media (max-width: 768px) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 0 auto;
+    }
+
     button {
       margin: 0 2rem;
+
+      @media (max-width: 1080px) {
+        margin: 1rem 0;
+      }
     }
   }   
 }
@@ -62,11 +78,22 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+
+  @media (max-width: 1080px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .topic-container {
   margin-top: 2rem;
   width: 30%;
+
+  @media (max-width: 1080px) {
+    width: 50%;
+  }
 }
 
 .topic-title {

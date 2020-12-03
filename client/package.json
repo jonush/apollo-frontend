@@ -36,7 +36,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test --env=jest-environment-jsdom-sixteen",
+    "test": "craco test --env=jest-environment-jsdom-sixteen --testURL http://localhost:3000",
     "coverage": "npm test -- --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
@@ -49,11 +49,7 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.js"
-    ],
-    "modulePaths": [
-      "<rootDir>"
-    ],
-    "testURL": "http://localhost:3000"
+    ]
   },
   "browserslist": {
     "production": [

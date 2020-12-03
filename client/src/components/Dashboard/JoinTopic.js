@@ -63,7 +63,7 @@ export const JoinTopic = props => {
         visible={visible}
         width={400}
         title="Join Topic"
-        okText="Join"
+        okText="Enter"
         cancelText="Cancel"
         onCancel={cancelJoin}
         onOk={join}
@@ -72,9 +72,9 @@ export const JoinTopic = props => {
         <Form name="join-form" layout="vertical" form={form}>
           <Form.Item
             name={["join_code"]}
-            label="Enter your join code:"
+            label="Input your join code:"
             rules={[
-              { required: true, message: "Please enter your join code." }
+              { required: true, message: "Please input your join code." }
             ]}
           >
             <Input data-testid="join-topic-form" placeholder="ex: 4gH7Dz" />
