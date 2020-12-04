@@ -45,10 +45,14 @@
   align-items: center;
   padding-top: 1rem;
 
+  @media (max-width: 1080px) {
+    padding: 1rem 2rem;
+  }
+
   h3 {
     font-weight: bold;
 
-    @media (max-width: 1080px) {
+    @media (max-width: 768px) {
       display: none;
     }
   }
@@ -67,8 +71,12 @@
     button {
       margin: 0 2rem;
 
-      @media (max-width: 1080px) {
+      @media (max-width: 768px) {
         margin: 1rem 0;
+      }
+
+      @media (max-width: 1080px) {
+        margin: 0 1rem;
       }
     }
   }   
