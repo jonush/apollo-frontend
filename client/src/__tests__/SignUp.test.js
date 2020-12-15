@@ -52,11 +52,11 @@ describe("<SignUp /> testing suite", () => {
     fireEvent.click(wrapper.getByTestId("sign-up-submit"));
     
     // verify the user is signing up -> sign up button becomes loading state
-    await waitForElementToBeRemoved(() =>wrapper.getByTestId("sign-up-submit"));
+    await waitForElementToBeRemoved(() => wrapper.getByTestId("sign-up-submit"));
   });
 
   // sign up form validation works correctly
-  test("User can sign up successfully", async () => {
+  test("Sign Up form has functioning form validation", async () => {
     const wrapper = render(
       <MemoryRouter initialEntries={["/signup"]}>
         <Route path="/signup">
