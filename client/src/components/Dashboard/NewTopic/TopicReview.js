@@ -6,8 +6,8 @@ const TopicReview = ({ form, page }) => {
 
   useEffect(() => {
     if(page === 3) {
+      console.log(form.getFieldsValue());
       setReview(form.getFieldsValue());
-      console.log(review);
     }
   }, [page, review.surveyQuestions]);
 
@@ -18,12 +18,12 @@ const TopicReview = ({ form, page }) => {
       <div className="review-topic">
         <div>
           <h4>Title</h4>
-          <h3>{review.topic.title !== undefined ? review.topic.title : "None"}</h3>
+          <h3>{review.topic.title ? review.topic.title : "None"}</h3>
         </div>
 
         <div>
           <h4>Frequency</h4>
-          <h3>{review.topic.frequency !== undefined ? review.topic.frequency : "None"}</h3>
+          <h3>{review.topic.frequency ? review.topic.frequency : "None"}</h3>
         </div>
       </div>
 
