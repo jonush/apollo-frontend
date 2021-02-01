@@ -135,7 +135,11 @@ const NewTopic = props => {
         </Steps>
 
         <Form form={form} layout="vertical" name="form_in_modal">
-          <div className={page === 0 ? null : "closed"}>
+          { page === 0 ? <TopicDetails /> : null }
+          { page === 1 ? <TopicContextQ /> : null }
+          { page === 2 ? <TopicSurveyQ /> : null }
+          { page === 3 ? <TopicReview form={form} page={page} /> : null }
+          {/* <div className={page === 0 ? null : "closed"}>
             <TopicDetails />
           </div>
 
@@ -149,7 +153,7 @@ const NewTopic = props => {
 
           <div className={page === 3 ? null : "closed"}>
             <TopicReview form={form} page={page} />
-          </div>
+          </div> */}
         </Form>
       </Modal>
     </div>
