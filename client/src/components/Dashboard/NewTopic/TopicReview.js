@@ -7,6 +7,7 @@ const TopicReview = ({ form, page }) => {
   useEffect(() => {
     if(page === 3) {
       setReview(form.getFieldsValue());
+      console.log(review);
     }
   }, [page, review.surveyQuestions]);
 

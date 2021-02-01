@@ -20,6 +20,7 @@ const TopicDetails = () => {
         name={["topic", "title"]}
         label="Topic Title"
         required
+        initialValue={null}
         rules={[{ required: true, message: "Please provide a topic title." }]}
       >
         <Input placeholder="ex: Daily Stand Up" />
@@ -36,8 +37,9 @@ const TopicDetails = () => {
         style={{ marginTop: "1rem" }}
         name={["topic", "frequency"]}
         label="How often should the topic surveys occur?"
-        required
         rules={[{ required: true, message: "Please set a topic frequency." }]}
+        initialValue={null}
+        required
       >
         <Select placeholder="Select a frequency">
           <Option value="Off">Off</Option>
