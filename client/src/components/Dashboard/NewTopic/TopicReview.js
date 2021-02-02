@@ -3,11 +3,11 @@ import { Form, Input, Divider } from "antd";
 
 const TopicReview = ({ form, page }) => {
   const [review, setReview] = useState(form.getFieldsValue());
-  console.log(form.getFieldsValue());
-
+  
   useEffect(() => {
     if(page === 3) {
       setReview(form.getFieldsValue());
+      console.log(form.getFieldsValue());
     }
   }, [page, review.surveyQuestions]);
 
@@ -18,19 +18,19 @@ const TopicReview = ({ form, page }) => {
       <div className="review-topic">
         <div>
           <h4>Title</h4>
-          <h3>{review.topic.title ? review.topic.title : "None"}</h3>
+          <h3>{review.topic && review.topic.title !== undefined ? review.topic.title : "None"}</h3>
         </div>
 
         <div>
           <h4>Frequency</h4>
-          <h3>{review.topic.frequency ? review.topic.frequency : "None"}</h3>
+          <h3>{review.topic && review.topic.frequency !== undefined ? review.topic.frequency : "None"}</h3>
         </div>
       </div>
 
       <div className="review-questions">
         <div className="review-context">
           <h4>Context Questions</h4>
-          {review.contextQuestions !== undefined ? review.contextQuestions.map((q, index) => {
+          {review.topic && review.contextQuestions !== undefined ? review.contextQuestions.map((q, index) => {
             return (
               <div key={index}>
                 <h3>{index + 1}. {q.question}</h3>
@@ -41,7 +41,7 @@ const TopicReview = ({ form, page }) => {
 
         <div className="review-survey">
           <h4>Survey Questions</h4>
-          {review.surveyQuestions !== undefined ? review.surveyQuestions.map((q, index) => {
+          {review.topic && review.surveyQuestions !== undefined ? review.surveyQuestions.map((q, index) => {
             return (
               <div key={index}>
                 <h3>{index + 1}. {q.question}</h3>
