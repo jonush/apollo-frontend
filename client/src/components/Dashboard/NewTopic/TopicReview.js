@@ -3,10 +3,10 @@ import { Form, Input, Divider } from "antd";
 
 const TopicReview = ({ form, page }) => {
   const [review, setReview] = useState(form.getFieldsValue());
+  console.log(form.getFieldsValue());
 
   useEffect(() => {
     if(page === 3) {
-      console.log(form.getFieldsValue());
       setReview(form.getFieldsValue());
     }
   }, [page, review.surveyQuestions]);
