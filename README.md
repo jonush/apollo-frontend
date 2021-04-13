@@ -4,4 +4,6 @@ Apollo is an automated stand-up tool that helps teams stay updated without sinki
 
 This is the front-end repository for Apollo. The web application was build using React and Redux, and was styled using SASS. The backend API can be found [here](https://github.com/jonush/apollo-backend). This application is deployed with Vercel and the backend is hosted on Heroku.
 
+Currently, new accounts will not be associated with any existing topics. Create your own topic to get started!
+
 Feel free to contact me with any questions or comments. Please sumbit tickets with regards to any issues!
