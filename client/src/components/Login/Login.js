@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Form, Input, Button, Divider, Spin } from "antd";
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { Form, Input, Button, Divider, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import NavBar from "../Navbar";
-import { loginUser } from "../../api/index";
-import planet from "../../images/planet.svg";
-import wavesL from "../../images/waves-left.svg";
-import wavesR from "../../images/waves-right.svg";
+import NavBar from '../Navbar';
+import { loginUser } from '../../api/index';
+import planet from '../../images/planet.svg';
+import wavesL from '../../images/waves-left.svg';
+import wavesR from '../../images/waves-right.svg';
 
 const Login = () => {
   const [form] = Form.useForm();
@@ -22,78 +22,105 @@ const Login = () => {
 
     form
       .validateFields()
-      .then(values => {
+      .then((values) => {
         loginUser(values)
-          .then(res => {
-            if(res.message === "SUCCESS: User logged in.") {
+          .then((res) => {
+            if (res.message === 'SUCCESS: User logged in.') {
               form.resetFields();
               console.log(res);
               setLoginState(false);
-              history.push("/dashboard");
+              history.push('/dashboard');
             } else {
               setLoginError(true);
             }
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
             setLoginError(true);
-          })
+            setLoginState(false);
+          });
       })
-      .catch(err => {
-        console.log("Please check your credentials and try again.");
-      })
+      .catch((err) => {
+        console.log('Please check your credentials and try again.');
+      });
   };
 
   return (
     <div>
       <NavBar />
 
-      <div className="user-container">
-        <img src={planet} alt="planet floating in space" />
+      <div className='user-container'>
+        <img src={planet} alt='planet floating in space' />
 
         <Form
           form={form}
-          name="login"
-          layout="vertical"
+          name='login'
+          layout='vertical'
           onFinish={submitForm}
-          className="user-form"
-          size="medium"
+          className='user-form'
+          size='medium'
         >
-          <Divider className="divider">Login</Divider>
+          <Divider className='divider'>Login</Divider>
 
           <Form.Item
-            name="email"
+            name='email'
             rules={[{ required: true, message: 'Please input your email.' }]}
           >
-            <Input data-testid="login-email" placeholder="Email" />
+            <Input data-testid='login-email' placeholder='Email' />
           </Form.Item>
 
           <Form.Item
-            name="password"
+            name='password'
             rules={[{ required: true, message: 'Please enter a password.' }]}
           >
-            <Input.Password data-testid="login-password" visibilityToggle={false} placeholder="Password" />
+            <Input.Password
+              data-testid='login-password'
+              visibilityToggle={false}
+              placeholder='Password'
+            />
           </Form.Item>
 
-          {
-            !loginState ? 
-              <div>
-                <Button data-testid="login-submit" type="primary" htmlType="submit" block>Log In</Button>
-                <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
-              </div> : <Spin
-                size="large"
-                tip="Logging In..."
-                indicator={antIcon}
-                style={{width: "100%", marginTop: "2rem"}}
-              />
-          }
+          {!loginState ? (
+            <div>
+              <Button
+                data-testid='login-submit'
+                type='primary'
+                htmlType='submit'
+                block
+              >
+                Log In
+              </Button>
+              <p>
+                Don't have an account? <Link to='/signup'>Sign up</Link>
+              </p>
+            </div>
+          ) : (
+            <Spin
+              size='large'
+              tip='Logging In...'
+              indicator={antIcon}
+              style={{ width: '100%', marginTop: '2rem' }}
+            />
+          )}
 
-          {loginError && !loginState ? <p style={{color: "red"}}>There was an error logging in. Please try again.</p> : null}
+          {loginError && !loginState ? (
+            <p style={{ color: 'red' }}>
+              There was an error logging in. Please try again.
+            </p>
+          ) : null}
         </Form>
       </div>
 
-      <img className="waves-l" src={wavesL} alt="vector of purple waves in left bottom corner" />
-      <img className="waves-r" src={wavesR} alt="vector of purple waves in top right corner" />
+      <img
+        className='waves-l'
+        src={wavesL}
+        alt='vector of purple waves in left bottom corner'
+      />
+      <img
+        className='waves-r'
+        src={wavesR}
+        alt='vector of purple waves in top right corner'
+      />
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
 // The methods to make calls to the API endpoints should be in this file.
 // Methods should be created and exported from this file, and imported into components.
 
 // BASE URL
 // can also be set up in a .env file as: process.env.REACT_APP_API_URI
-const baseURL = `https://apollo-be-api.herokuapp.com`
+const baseURL = `https://apollo-be-api.herokuapp.com`;
 
 // refer to the API documentation for a list of all endpoints:
 // https://github.com/jonush/apollo-backend
@@ -19,40 +19,35 @@ const axiosWithAuth = () => {
   return axios.create({
     headers: {
       Authorization: token,
-    }
+    },
   });
 };
 
 // Authentication Endpoints
 // register a new user
-const registerUser = newUser => {
+const registerUser = (newUser) => {
   return axios
     .post(`${auth}/register`, newUser)
-    .then(res => {
+    .then((res) => {
       return res.data;
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
-    })
+    });
 };
 
 // log in with a user's credentials
-const loginUser = credentials => {
+const loginUser = (credentials) => {
   return axios
     .post(`${auth}/login`, credentials)
-    .then(res => {
+    .then((res) => {
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('userID', res.data.userID);
       return res.data;
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
-    })
+    });
 };
 
-export {
-  baseURL,
-  axiosWithAuth,
-  registerUser,
-  loginUser,
-};
+export { baseURL, axiosWithAuth, registerUser, loginUser };

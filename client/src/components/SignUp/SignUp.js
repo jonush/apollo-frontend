@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Form, Input, Button, Divider, Spin } from "antd";
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { Form, Input, Button, Divider, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import NavBar from "../Navbar";
-import { registerUser } from "../../api/index";
-import astronaut from "../../images/astronaut.svg";
-import wavesL from "../../images/waves-left.svg";
-import wavesR from "../../images/waves-right.svg";
+import NavBar from '../Navbar';
+import { registerUser } from '../../api/index';
+import astronaut from '../../images/astronaut.svg';
+import wavesL from '../../images/waves-left.svg';
+import wavesR from '../../images/waves-right.svg';
 
 const SignUp = () => {
   const [form] = Form.useForm();
@@ -21,90 +21,120 @@ const SignUp = () => {
 
     form
       .validateFields()
-      .then(values => {
+      .then((values) => {
         registerUser(values)
-          .then(res => {
-            if(res.error) {
-              alert("Unable to sign up. Please try again.");
+          .then((res) => {
+            if (res.error) {
+              alert('Unable to sign up. Please try again.');
             } else {
               console.log(res);
               form.resetFields();
               setRegisterState(false);
-              history.push("/login");
+              history.push('/login');
             }
           })
-          .catch(err => {
+          .catch((err) => {
             alert('User Registration Failed');
-          })
+            setRegisterState(false);
+          });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-      })
+        setRegisterState(false);
+      });
   };
 
   return (
     <div>
       <NavBar />
 
-      <div className="user-container">
-        <img src={astronaut} alt="astronaut floating in space with two planets" />
+      <div className='user-container'>
+        <img
+          src={astronaut}
+          alt='astronaut floating in space with two planets'
+        />
 
         <Form
           form={form}
-          name="signup"
-          layout="vertical"
+          name='signup'
+          layout='vertical'
           onFinish={submitForm}
-          className="user-form"
-          size="medium"
+          className='user-form'
+          size='medium'
         >
-          <Divider className="divider">Sign Up</Divider>
+          <Divider className='divider'>Sign Up</Divider>
 
           <Form.Item
-            name="first_name"
-            rules={[{ required: true, message: 'Please input your first name.' }]}
+            name='first_name'
+            rules={[
+              { required: true, message: 'Please input your first name.' },
+            ]}
           >
-            <Input data-testid="signup-first-name" placeholder="First Name" />
+            <Input data-testid='signup-first-name' placeholder='First Name' />
           </Form.Item>
 
           <Form.Item
-            name="last_name"
-            rules={[{ required: true, message: 'Please input your last name.' }]}
+            name='last_name'
+            rules={[
+              { required: true, message: 'Please input your last name.' },
+            ]}
           >
-            <Input data-testid="signup-last-name" placeholder="Last Name" />
+            <Input data-testid='signup-last-name' placeholder='Last Name' />
           </Form.Item>
 
           <Form.Item
-            name="password"
+            name='password'
             rules={[{ required: true, message: 'Please enter a password.' }]}
           >
-            <Input.Password data-testid="signup-password" visibilityToggle={false} placeholder="Password" />
+            <Input.Password
+              data-testid='signup-password'
+              visibilityToggle={false}
+              placeholder='Password'
+            />
           </Form.Item>
 
           <Form.Item
-            name="email"
+            name='email'
             rules={[{ required: true, message: 'Please input your email.' }]}
           >
-            <Input data-testid="signup-email" placeholder="Email" />
+            <Input data-testid='signup-email' placeholder='Email' />
           </Form.Item>
 
-          {
-            !registerState ? 
+          {!registerState ? (
             <div>
-              <Button data-testid="sign-up-submit" type="primary" htmlType="submit" block>Sign Up</Button>
-              <p>Already have an account? <Link to="/login">Log In</Link></p>
+              <Button
+                data-testid='sign-up-submit'
+                type='primary'
+                htmlType='submit'
+                block
+              >
+                Sign Up
+              </Button>
+              <p>
+                Already have an account? <Link to='/login'>Log In</Link>
+              </p>
             </div>
-            : <Spin
-              size="large"
-              tip="Signing Up..."
+          ) : (
+            <Spin
+              size='large'
+              tip='Signing Up...'
               indicator={antIcon}
-              style={{width: "100%", marginTop: "2rem"}}
+              style={{ width: '100%', marginTop: '2rem' }}
             />
-          }
+          )}
         </Form>
       </div>
 
-      <img className="waves-l" src={wavesL} alt="vector of purple waves in left bottom corner" />
-      <img className="waves-r" src={wavesR} alt="vector of purple waves in top right corner" />
+      <img
+        className='waves-l'
+        src={wavesL}
+        alt='vector of purple waves in left bottom corner'
+      />
+      <img
+        className='waves-r'
+        src={wavesR}
+        alt='vector of purple waves in top right corner'
+      />
     </div>
   );
 };
